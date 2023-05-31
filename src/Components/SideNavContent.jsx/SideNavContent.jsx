@@ -4,7 +4,6 @@ import '../css/style.css';
 function SideNavContent() {
     return (
         <>
-            <div id="layoutSidenav_content">
                 <main>
                     <div className="container-fluid px-4">
                         <h1 className="mt-4">Dashboard</h1>
@@ -630,19 +629,7 @@ function SideNavContent() {
                         </div>
                     </div>
                 </main>
-                <footer className="py-4 bg-light mt-auto">
-                    <div className="container-fluid px-4">
-                        <div className="d-flex align-items-center justify-content-between small">
-                            <div className="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="/">Privacy Policy</a>
-                                &middot;
-                                <a href="/">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
+                
         </>
     )
 }

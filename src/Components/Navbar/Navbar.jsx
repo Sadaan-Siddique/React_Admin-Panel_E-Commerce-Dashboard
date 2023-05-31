@@ -47,10 +47,7 @@ function Navbar() {
                         </li>
                     </ul>
                 </nav>
-                <div id="layoutSidenav">
-                    <Sidebar />
-                    <Outlet />
-                </div>
+                <Sidebar />
             </div>
         </>
     )

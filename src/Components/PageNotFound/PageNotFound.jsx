@@ -7,9 +7,9 @@ function PageNotFound() {
     const navigate = useNavigate();
     useEffect(() => {
         setTimeout(() => {
-            navigate('/dashboard');
-        }, 3000)
-    }, [])
+            navigate('/');
+        }, 2000)
+    }, [navigate])
     return (
         <>
             <div style={{ paddingLeft: '5%' }} className="div404 container d-flex border border-2 shadow rounded ">
