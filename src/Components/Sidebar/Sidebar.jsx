@@ -1,6 +1,7 @@
 import React from 'react';
 import SideNavContent from '../SideNavContent.jsx/SideNavContent';
 import '../css/style.css';
+// import { Outlet } from 'react-router-dom';
 
 function Sidebar() {
     return (
@@ -40,7 +41,7 @@ function Sidebar() {
                                         {/* <i className='fs fas fa-list'></i> */}
                                         Products List</a>
                                     <a className="nav-link" href="layout-sidenav-light.html">
-                                        {/* <i class="bi bi-plus"></i> */}
+                                        {/* <i className="bi bi-plus"></i> */}
                                         Add Product
                                     </a>
                                     <a className="nav-link" href="layout-sidenav-light.html">Delete Product</a>
@@ -63,7 +64,7 @@ function Sidebar() {
                             <a className="nav-link collapsed" href="/" data-bs-toggle="collapse" data-bs-target="#collapseInventory"
                                 aria-expanded="false" aria-controls="collapseInventory">
                                 <div className="sb-nav-link-icon">
-                                    <i class="bi bi-list-columns"></i>
+                                    <i className="bi bi-list-columns"></i>
                                 </div>
                                 Inventory
                                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
@@ -72,11 +73,11 @@ function Sidebar() {
                                 data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a className="nav-link" href="layout-static.html">
-                                        {/* <i class="bi bi-plus"></i> */}
+                                        {/* <i className="bi bi-plus"></i> */}
                                         Add Inventory
                                     </a>
                                     <a className="nav-link" href="layout-sidenav-light.html">
-                                        {/* <i class="bi bi-card-text"></i> */}
+                                        {/* <i className="bi bi-card-text"></i> */}
                                         Inventory Detail
                                     </a>
                                 </nav>
@@ -95,10 +96,10 @@ function Sidebar() {
                                 data-bs-parent="#sidenavAccordion">
                                 <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a className="nav-link" href="layout-static.html">
-                                        {/* <i class="bi bi-people-fill"></i> */}
+                                        {/* <i className="bi bi-people-fill"></i> */}
                                         Users List</a>
                                     <a className="nav-link" href="layout-sidenav-light.html">
-                                        {/* <i class="bi bi-person-circle"></i> */}
+                                        {/* <i className="bi bi-person-circle"></i> */}
                                         User Profile</a>
                                 </nav>
                             </div>

@@ -92,6 +92,18 @@
   }
 }
 
+/* Page Not Found Start */
+.div404{
+   margin-top: 100px;
+   padding: 4% 0% 4% 0%;
+}
+.div404 div i{
+  font-size: larger;
+  border: 2px solid red;
+}
+/* Page Not Found Start */
+
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

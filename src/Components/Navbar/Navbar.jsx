@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
+// import ProductList from '../Routes/Products/ProductList';
 import '../css/style.css';
+import { Outlet } from 'react-router-dom';
+
 
 function Navbar() {
     const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -46,6 +49,7 @@ function Navbar() {
                 </nav>
                 <div id="layoutSidenav">
                     <Sidebar />
+                    <Outlet />
                 </div>
             </div>
         </>

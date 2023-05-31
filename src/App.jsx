@@ -1,18 +1,25 @@
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
+// import SideNavContent from './Components/SideNavContent.jsx/SideNavContent';
 import ProductList from './Components/Routes/Products/ProductList';
-import ProductDetail from './Components/Routes/Products/ProductDetail';
-import AddProduct from './Components/Routes/Products/AddProduct';
-import DeleteProduct from './Components/Routes/Products/DeleteProduct';
+import PageNotFound from './Components/PageNotFound/PageNotFound';
+// import ProductDetail from './Components/Routes/Products/ProductDetail';
+// import AddProduct from './Components/Routes/Products/AddProduct';
+// import DeleteProduct from './Components/Routes/Products/DeleteProduct';
 
 function App() {
   return (
     <>
 
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
-        <Route path="/product/productList" element={<ProductList />} />
+
+        <Route path="/" element={<Navigate to={'/dashboard'} element={<Navbar />} />} />
+        <Route path="/dashboard" element={<Navbar />}>
+          <Route path="productList" element={<ProductList />} />
+        </Route>
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </>
   );

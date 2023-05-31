@@ -65,7 +65,7 @@ function SideNavContent() {
                                                 <div className=""></div>
                                             </div>
                                         </div>
-                                        <canvas id="myAreaChart" width="739" height="295" style={{ "display": "block", "width": " 739px", "height": "295px" }} sclassName="chartjs-render-monitor"></canvas>
+                                        <canvas id="myAreaChart" width="739" height="295" style={{ "display": "block", "width": " 739px", "height": "295px" }} className="chartjs-render-monitor"></canvas>
                                     </div>
                                 </div>
 
@@ -90,7 +90,14 @@ function SideNavContent() {
                                 <div className="datatable-top">
                                     <div className="datatable-dropdown">
                                         <label>
-                                            <select className="datatable-selector"><option value="5">5</option><option value="10" selected="">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option></select> entries per page
+                                            <select className="datatable-selector" defaultValue="10">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                            </select>
+                                            entries per page
                                         </label>
                                     </div>
                                     <div className="datatable-search">
