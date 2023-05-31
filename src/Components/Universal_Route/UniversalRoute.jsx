@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/style.css';
 
-function PageNotFound() {
+function UniversalRoute() {
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -25,4 +25,4 @@ function PageNotFound() {
     )
 }
 
-export default PageNotFound
+export default UniversalRoute
