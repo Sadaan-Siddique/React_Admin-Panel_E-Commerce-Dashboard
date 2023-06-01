@@ -25,10 +25,12 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Routes Handling */}
+        {/* Invalid Routes Handling */}
         <Route path="/" element={<Navigate to={'/dashboard'} />} />
         <Route path="/product" element={<Navigate to={'/productList'} />} />
         <Route path="/order" element={<Navigate to={'/newOrder'} />} />
+        <Route path="/inventory" element={<Navigate to={'/addInventory'} />} />
+        <Route path="/user" element={<Navigate to={'/usersLists'} />} />
 
         <Route path="/" element={<Navbar />}>
           {/* Main Route */}

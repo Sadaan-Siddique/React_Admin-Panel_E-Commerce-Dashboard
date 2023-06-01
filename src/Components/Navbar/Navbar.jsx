@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
-// import ProductList from '../Routes/Products/ProductList';
 import '../css/style.css';
-import { Outlet } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -16,9 +14,9 @@ function Navbar() {
             <div className={`${sidebarVisible ? 'sb-nav-fixed' : 'sb-nav-fixed sb-sidenav-toggled'}`}>
                 <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                     {/* <!-- Navbar Brand--> */}
-                    <a className="navbar-brand ps-3" href="index.html">Ekka Dashboard</a>
+                    <Link to={'/'} className="navbar-brand ps-3">Ekka Dashboard</Link>
                     {/* <!-- Sidebar Toggle--> */}
-                    <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="/" onClick={toggleSidebar}>
+                    <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={toggleSidebar}>
                         <i className="fas fa-bars"></i>
                     </button>
                     {/* <!-- Navbar Search--> */}

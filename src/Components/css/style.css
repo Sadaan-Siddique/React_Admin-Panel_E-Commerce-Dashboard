@@ -105,6 +105,12 @@
 
 /* Page Not Found Start */
 
+/* Sidebar Start */
+#layoutSidenav_nav label{
+  cursor: pointer;
+}
+/* Sidebar End */
+
 /* Product List Start */
 .productList {
   border: 2px solid red;
