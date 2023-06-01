@@ -4,14 +4,18 @@ import '../css/style.css';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
-    const [sidebarVisible, setSidebarVisible] = useState(true);
+    const [sidebarVisible, setSidebarVisible] = useState(false);
+    const [themeBtn, setThemeBtn] = useState(false);
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     }
+    const toggleTheme = () => {
+        setThemeBtn(!themeBtn)
+    }
     return (
         <>
-            <div className={`${sidebarVisible ? 'sb-nav-fixed' : 'sb-nav-fixed sb-sidenav-toggled'}`}>
+            <div className={`${sidebarVisible ? 'sb-nav-fixed sb-sidenav-toggled' : 'sb-nav-fixed '}`}>
                 <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                     {/* <!-- Navbar Brand--> */}
                     <Link to={'/'} className="navbar-brand ps-3">Ekka Dashboard</Link>
@@ -29,6 +33,20 @@ function Navbar() {
                             </button>
                         </div>
                     </form>
+                    <div>
+                        <div style={{ cursor: 'pointer', marginBottom: '3.5px' }} className='ms-1' onClick={toggleTheme}>
+                            {themeBtn ?
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" color='white' fill="currentColor" class="bi bi-brightness-low" viewBox="0 0 16 16">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z" />
+                                </svg>
+                                :
+                                // <i className="bi bi-brightness-low-fill"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" color='white' fill="currentColor" class="bi bi-brightness-low-fill" viewBox="0 0 16 16">
+                                    <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z" />
+                                </svg>
+                            }
+                        </div>
+                    </div>
                     {/* <!-- Navbar--> */}
                     <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                         <li className="nav-item dropdown">
