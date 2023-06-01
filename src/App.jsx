@@ -1,6 +1,7 @@
+import React from 'react';
+import { Navigate, Routes, Route } from "react-router-dom";
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import { Navigate, Routes, Route } from "react-router-dom";
 // Universal Route
 import UniversalRoute from './Components/Universal_Route/UniversalRoute';
 // Side Nav Content

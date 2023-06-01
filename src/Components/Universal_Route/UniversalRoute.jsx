@@ -18,7 +18,7 @@ function UniversalRoute() {
                 </div>
                 <div className="ps-3">
                     <h1 className='fw-bold display-5'>Invalid Route</h1>
-                    <h2 className='ps-3'>Page Not Found</h2>
+                    <h2 className='ps-3'><span className='fw-bold text-danger pe-2'>404</span>Page Not Found</h2>
                 </div>
             </div>
         </>
