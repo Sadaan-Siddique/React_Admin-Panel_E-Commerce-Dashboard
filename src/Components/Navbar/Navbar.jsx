@@ -19,19 +19,19 @@ function Navbar() {
     return (
         <>
             <div className={`${sidebarVisible ? 'sb-nav-fixed sb-sidenav-toggled' : 'sb-nav-fixed '}`}>
-                <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+                <nav className={`sb-topnav navbar navbar-expand ${toggleTheme ? 'navbar-dark bg-dark' : 'bg-light'} `}>
                     {/* <!-- Navbar Brand--> */}
                     <Link to={'/'} className="navbar-brand ps-3">Ekka Dashboard</Link>
                     {/* <!-- Sidebar Toggle--> */}
-                    <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={toggleSidebar}>
+                    <button className="btn btn-link btn-md shadow-none order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={toggleSidebar}>
                         <i className="fas fa-bars"></i>
                     </button>
                     {/* <!-- Navbar Search--> */}
                     <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                         <div className="input-group">
-                            <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
+                            <input className="form-control pt-1 shadow-none" type="text" placeholder="Search for..." aria-label="Search for..."
                                 aria-describedby="btnNavbarSearch" />
-                            <button className="btn btn-primary" id="btnNavbarSearch" type="button">
+                            <button style={{ height: '34px',color:'white',backgroundColor:'#434546' }} className="btn btn-sm btn-outline-light px-3 shadow-none" id="btnNavbarSearch" type="button">
                                 <i className="fas fa-search"></i>
                             </button>
                         </div>
@@ -39,12 +39,12 @@ function Navbar() {
                     <div>
                         <div style={{ cursor: 'pointer', marginBottom: '3.5px' }} className='ms-1' onClick={toggleThemefunc}>
                             {toggleTheme ?
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" color='white' fill="currentColor" className="bi bi-brightness-low" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" color='#ffffff8c' fill="currentColor" className="bi bi-brightness-low themeIconNotFill" viewBox="0 0 16 16">
                                     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm.5-9.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z" />
                                 </svg>
                                 :
                                 // <i className="bi bi-brightness-low-fill"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" color='white' fill="currentColor" className="bi bi-brightness-low-fill" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" color='#6c757d' fill="currentColor" className="bi bi-brightness-low-fill themeIconFill" viewBox="0 0 16 16">
                                     <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8.5 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 11a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5-5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-7.779 7.779a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm7.072 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707zM3.757 4.464a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z" />
                                 </svg>
                             }
@@ -53,8 +53,10 @@ function Navbar() {
                     {/* <!-- Navbar--> */}
                     <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="navbarDropdown" href="/" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false"><i className="fas fa-user fa-fw"></i></a>
+                            <label className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i className="fas fa-user fa-fw"></i>
+                            </label>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a className="dropdown-item" href="/">Settings</a></li>
                                 <li><a className="dropdown-item" href="/">Activity Log</a></li>
