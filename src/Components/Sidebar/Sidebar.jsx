@@ -1,25 +1,27 @@
 import React from 'react';
 import '../css/style.css';
 import { Outlet, Link } from 'react-router-dom';
+import useAuth from '../../Hooks/authHook';
 
 function Sidebar() {
+
+    const { toggleTheme } = useAuth();
+
     return (
         <>
 
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
-                    <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <nav className={`sb-sidenav accordion ${toggleTheme ? 'sb-sidenav-light' : 'sb-sidenav-dark'} `} id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
                             <div className="nav">
                                 {/* <div className="sb-sidenav-menu-heading">Core</div> */}
-                                <hr />
-                                <Link to={'/dashboard'} className="nav-link">
+                                <Link to={'/dashboard'} className="nav-link mt-3">
                                     <div className="sb-nav-link-icon">
                                         <i className="fas fa-tachometer-alt"></i>
                                     </div>
                                     Dashboard
                                 </Link>
-                                <hr />
                                 <div className="sb-sidenav-menu-heading">Views</div>
                                 <Link to={'/dashboard'} className="nav-link">
                                     <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
@@ -27,7 +29,7 @@ function Sidebar() {
                                 </Link>
                                 <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div className="sb-nav-link-icon">
-                                        <i className="fas fa-columns"></i>
+                                        <i class="fa fa-th-list"></i>
                                     </div>
                                     Products
                                     <div className="sb-sidenav-collapse-arrow">
@@ -45,7 +47,7 @@ function Sidebar() {
                                 <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                                     aria-expanded="false" aria-controls="collapsePages">
                                     <div className="sb-nav-link-icon">
-                                        <i className="fas fa-book-open"></i>
+                                        <i class="fas fa-shopping-cart"></i>
                                     </div>
                                     Orders
                                     <div className="sb-sidenav-collapse-arrow">

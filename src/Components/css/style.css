@@ -91,6 +91,7 @@
     scroll-behavior: smooth;
   }
 }
+/* My Custom CSS Start */
 
 /* Universal Route Start */
 .div404 {
@@ -105,18 +106,35 @@
 
 /* Universal Route End */
 
-.themeIconFill:hover{
+/* Navbar Start */
+
+.navbar-brand .dashboard-logo{
+  width: 37px;
+  height: 36px;
+}
+
+.themeIconFill:hover {
   color: black;
 }
-.themeIconNotFill:hover{
+
+.themeIconNotFill:hover {
   color: white;
 }
-/* .input-group button:hover{
+
+.input-group .btn {
+  color: white;
+  background-color: #434546;
+  transition: all;
+  transition-duration: 0.3s;
+}
+
+.input-group .btn:hover {
   background-color: black;
-  color: red;
-} */
+  color: white;
+  border: 1px solid white;
+}
 
-
+/* Navbar End */
 
 /* Sidebar Start */
 #layoutSidenav_nav label {
@@ -132,6 +150,8 @@
 
 /* Product List End */
 
+
+/* My Custom CSS End */
 
 
 body {
@@ -12923,12 +12943,27 @@ body {
   z-index: 1039;
 }
 
-.sb-topnav .navbar-brand {
-  width: 225px;
+.navbar-dark .navbar-brand {
+  width: 220px;
   margin: 0;
   /* border:2px solid red; */
   font-size: 22px;
+  font-weight: 500;
+  padding-left: 20px;
   letter-spacing: 0.5px;
+  font-family: sans-serif;
+  transition: all;
+  transition-duration: 0.5s;
+}
+
+.bg-light .navbar-brand{
+  width: 220px;
+  margin: 0;
+  /* border:2px solid red; */
+  font-size: 22px;
+  font-weight:lighter;
+  padding-left: 20px;
+  letter-spacing: 0.2px;
   font-family: sans-serif;
   transition: all;
   transition-duration: 0.5s;
@@ -13050,7 +13085,20 @@ body {
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link {
   color: #212529;
+  font-weight: 500;
+
 }
+
+.sb-sidenav .sb-sidenav-menu .nav-link {
+  letter-spacing: 0.5px;
+  transition: all;
+  transition-duration: 0.3s;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav-link:hover {
+  letter-spacing: 0px;
+}
+
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link .sb-nav-link-icon {
   color: #adb5bd;
@@ -13061,7 +13109,7 @@ body {
 }
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
-  color: #0d6efd;
+  color: black;
 }
 
 .sb-sidenav-light .sb-sidenav-menu .nav-link.active {
