@@ -23,7 +23,7 @@ function Navbar() {
             <div className={`${sidebarVisible ? 'sb-nav-fixed sb-sidenav-toggled' : 'sb-nav-fixed '}`}>
                 <nav className={`sb-topnav navbar navbar-expand ${toggleTheme ? 'bg-light' : 'navbar-dark bg-dark'} `}>
                     {/* <!-- Navbar Brand--> */}
-                    <Link to={'/'} className="navbar-brand">
+                    <Link to={'/'} className="navbar-brand mt-1">
                         <img src={dashboardColor} alt='img' className='dashboard-logo' />
                         Ekka Dashboard
                     </Link>
