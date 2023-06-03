@@ -118,7 +118,7 @@
   background-color: white;
   border-radius: 20px;
   transition: all;
-  transition-duration: 0.3s;
+  transition-duration: 0.7s;
   position: relative;
   bottom: 1px;
 }
@@ -137,7 +137,7 @@
   background-color: black;
   border-radius: 20px;
   transition: all;
-  transition-duration: 0.5s;
+  transition-duration: 0.7s;
   position: relative;
   bottom: 1px;
 }
