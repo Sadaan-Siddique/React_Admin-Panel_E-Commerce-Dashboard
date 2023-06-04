@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/style.css';
-import { ResponsiveContainer, Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, BarChart, Bar,PieChart,Pie } from 'recharts';
+import { ResponsiveContainer, Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, BarChart, Bar, PieChart, Pie } from 'recharts';
 // import useAuth from '../../Hooks/authHook';
 
 function SideNavContent() {
@@ -76,47 +76,63 @@ function SideNavContent() {
                     <ol className="breadcrumb mb-4">
                         <li className="breadcrumb-item active">Dashboard</li>
                     </ol>
-                    <div className="row">
+                    <div className="row row1">
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-primary text-white mb-4">
-                                <div className="card-body">Primary Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="/">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                            <div className="card mb-4 ">
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div className="card-body">20,000</div>
+                                        <label className="small ps-3 stretched-link" href="/">Daily Signups</label>
+                                    </div>
+                                    <div className="sb-nav-link-icon">
+                                        <i class="bi bi-person-fill-check"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-warning text-white mb-4">
-                                <div className="card-body">Warning Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="/">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                            <div className="card mb-4 ">
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div className="card-body">20,000</div>
+                                        <label className="small ps-3 stretched-link" href="/">Daily Visitors</label>
+                                    </div>
+                                    <div className="sb-nav-link-icon">
+                                        <i class="bi bi-person-fill-check"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-success text-white mb-4">
-                                <div className="card-body">Success Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="/">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                            <div className="card mb-4 ">
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div className="card-body">20,000</div>
+                                        <label className="small ps-3 stretched-link" href="/">Daily Order</label>
+                                    </div>
+                                    <div className="sb-nav-link-icon">
+                                        <i class="bi bi-person-fill-check"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-md-6">
-                            <div className="card bg-danger text-white mb-4">
-                                <div className="card-body">Danger Card</div>
-                                <div className="card-footer d-flex align-items-center justify-content-between">
-                                    <a className="small text-white stretched-link" href="/">View Details</a>
-                                    <div className="small text-white"><i className="fas fa-angle-right"></i></div>
+                            <div className="card mb-4 ">
+                                <div className="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div className="card-body">20,000</div>
+                                        <label className="small ps-3 stretched-link" href="/">Revenue</label>
+                                    </div>
+                                    <div className="sb-nav-link-icon">
+                                        <i class="bi bi-person-fill-check"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xl-7">
-                            <div className="card mb-4">
+                        <div className="col-xl-8">
+                            <div className="card mb-4" style={{ border: 'none' }}>
                                 <div className="card-header text-center fw-bold h4">
                                     <i className="fas fa-chart-area me-1"></i>
                                     Area Chart
@@ -135,7 +151,6 @@ function SideNavContent() {
                                     </ResponsiveContainer>
                                 </div>
                             </div>
-
                         </div>
                         <div className="col-xl-6">
                             <div className="card mb-4">
