@@ -1,9 +1,71 @@
 import React from 'react';
 import '../css/style.css';
+import { ResponsiveContainer, Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, BarChart, Bar,PieChart,Pie } from 'recharts';
 // import useAuth from '../../Hooks/authHook';
 
 function SideNavContent() {
-
+    const data = [
+        {
+            name: 'Page A',
+            uv: 4000,
+            pv: 2400,
+            amt: 2400,
+        },
+        {
+            name: 'Page B',
+            uv: 3000,
+            pv: 1398,
+            amt: 2210,
+        },
+        {
+            name: 'Page C',
+            uv: 2000,
+            pv: 9800,
+            amt: 2290,
+        },
+        {
+            name: 'Page D',
+            uv: 2780,
+            pv: 3908,
+            amt: 2000,
+        },
+        {
+            name: 'Page E',
+            uv: 1890,
+            pv: 4800,
+            amt: 2181,
+        },
+        {
+            name: 'Page F',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page G',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page H',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page I',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page J',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        }
+    ];
     // const { toggleTheme } = useAuth();
 
     return (
@@ -53,22 +115,24 @@ function SideNavContent() {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-xl-6">
+                        <div className="col-xl-7">
                             <div className="card mb-4">
-                                <div className="card-header">
+                                <div className="card-header text-center fw-bold h4">
                                     <i className="fas fa-chart-area me-1"></i>
-                                    Area Chart Example
+                                    Area Chart
                                 </div>
                                 <div className="card-body">
-                                    <div className="chartjs-size-monitor">
-                                        <div className="chartjs-size-monitor-expand">
-                                            <div className=""></div>
-                                        </div>
-                                        <div className="chartjs-size-monitor-shrink">
-                                            <div className=""></div>
-                                        </div>
-                                    </div>
-                                    <canvas id="myAreaChart" width="739" height="295" style={{ "display": "block", "width": " 739px", "height": "295px" }} className="chartjs-render-monitor"></canvas>
+                                    <ResponsiveContainer width="100%" aspect={2}>
+                                        <AreaChart data={data} width={80} height={70} margin={{ right: 50 }}>
+                                            <Area type={'monotone'} dataKey='pv' stroke='blue' activeDot={{ r: 5 }} />
+                                            <Area dataKey='uv' stroke='red' strokeWidth={3} activeDot={{ r: 5 }} />
+                                            <XAxis stroke='black' axisLine={{ strokeWidth: 2 }} dataKey='name' interval={'preserveStartEnd'} />
+                                            <YAxis stroke="black" axisLine={false} />
+                                            <Tooltip />
+                                            <CartesianGrid stroke='black' strokeOpacity={0.1} strokeDasharray='3 3' />
+                                            <Legend />
+                                        </AreaChart>
+                                    </ResponsiveContainer>
                                 </div>
                             </div>
 

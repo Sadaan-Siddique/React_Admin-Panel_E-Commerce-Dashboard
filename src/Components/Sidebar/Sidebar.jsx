@@ -112,7 +112,7 @@ function Sidebar() {
                         </div>
                     </nav>
                 </div>
-                <div id="layoutSidenav_content">
+                <div id="layoutSidenav_content" className=' '>
                     <Outlet />
                     <footer className="py-4 bg-light mt-auto">
                         <div className="container-fluid px-4">
