@@ -3,7 +3,7 @@ export const AuthContext = createContext();
 
 function AuthContextAPI({ children }) {
 
-    const [toggleTheme, setToggleTheme] = useState(false);
+    const [toggleTheme, setToggleTheme] = useState(true);
     console.log(toggleTheme);
 
     return (
