@@ -8,9 +8,9 @@ function ProductList() {
                 <div className="container-fluid px-4 py-3">
                     <div className="d-flex justify-content-between align-items-center mt-2">
                         <div>
-                            <h2 className=''>
+                            <h1 className=''>
                                 Products
-                            </h2>
+                            </h1>
                             <p>Product List</p>
                         </div>
                         <div>

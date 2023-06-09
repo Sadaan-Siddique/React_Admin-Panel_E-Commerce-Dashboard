@@ -1,18 +1,16 @@
 import React from 'react';
+import '../../css/style.css';
 
 function AddProduct() {
   return (
     <>
-      <div className="container">
+      <div className="container add-product">
         <div className="row">
           <div className="col-12">
-            <div className="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div className="breadcrumb-wrapper d-flex align-items-center justify-content-between px-2 py-2">
               <div>
                 <h1>Add Product</h1>
                 <p className="breadcrumbs">
-                  <span>
-                    <a href="index.html">Home</a>
-                  </span>
                   <span>
                     <i className="mdi mdi-chevron-right"></i>
                   </span>
@@ -23,114 +21,15 @@ function AddProduct() {
                 <a href="product-list.html" className="btn btn-primary">View All</a>
               </div>
             </div>
-            <div className="card card-default">
-              <div className="card-header card-header-border-bottom">
-                <h2>Add Product</h2>
+            <div className="card card-default mx-3">
+              <div className="card-header-border-bottom text-center mt-2">
+                {/* <h2>Form</h2>   */}
               </div>
               <div className="card-body">
                 <div className="row">
-                  <div className="col-lg-4">
-                    <div className="vendor-img-upload">
-                      <div className="vendor-main-img">
-                        <div className="avatar-upload">
-                          <div className="avatar-edit">
-                            <input type="file" id="imageUpload" className="image-upload" accept=".png, .jpg, .jpeg" />
-                            <label htmlFor="imageUpload">
-                              <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                            </label>
-                          </div>
-                          <div className="avatar-preview">
-                            <div className="imagePreview">
-                              <img className="image-preview" src="assets/img/products/vender-upload-preview.jpg" alt="edit" />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="thumb-upload-set colo-md-12">
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload01" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload01">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload02" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload02">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload03" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload03">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload04" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload04">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload05" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload05">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="thumb-upload">
-                            <div className="thumb-edit">
-                              <input type="file" id="thumbUpload06" className="image-upload" accept=".png, .jpg, .jpeg" />
-                              <label htmlFor="thumbUpload06">
-                                <img src="assets/img/icons/edit.svg" className="svg_img header_svg" alt="edit" />
-                              </label>
-                            </div>
-                            <div className="thumb-preview">
-                              <div className="image-thumb-preview">
-                                <img className="image-thumb-preview image-preview" src="assets/img/products/vender-upload-thumb-preview.jpg" alt="edit" />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-lg-8">
+                  <div className="col-lg-12">
                     <div className="vendor-upload-detail">
-                      <form className="row g-3">
+                      <form className="row">
                         <div className="col-md-6">
                           <label htmlFor="inputEmail4" className="form-label">Product name</label>
                           <input type="text" className="form-control slug-title" id="inputEmail4" />
@@ -161,38 +60,6 @@ function AddProduct() {
                         <div className="col-md-12">
                           <label className="form-label">Sort Description</label>
                           <textarea className="form-control" rows="2"></textarea>
-                        </div>
-                        <div className="col-md-4 mb-25">
-                          <label className="form-label">Colors</label>
-                          <input type="color" className="form-control form-control-color" id="exampleColorInput1" value="#ff6191" title="Choose your color" />
-                          <input type="color" className="form-control form-control-color" id="exampleColorInput2" value="#33317d" title="Choose your color" />
-                          <input type="color" className="form-control form-control-color" id="exampleColorInput3" value="#56d4b7" title="Choose your color" />
-                          <input type="color" className="form-control form-control-color" id="exampleColorInput4" value="#009688" title="Choose your color" />
-                        </div>
-                        <div className="col-md-8 mb-25">
-                          <label className="form-label">Size</label>
-                          <div className="form-checkbox-box">
-                            <div className="form-check form-check-inline">
-                              <input type="checkbox" name="size1" value="size" />
-                              <label>S</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input type="checkbox" name="size1" value="size" />
-                              <label>M</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input type="checkbox" name="size1" value="size" />
-                              <label>L</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input type="checkbox" name="size1" value="size" />
-                              <label>XL</label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                              <input type="checkbox" name="size1" value="size" />
-                              <label>XXL</label>
-                            </div>
-                          </div>
                         </div>
                         <div className="col-md-6">
                           <label className="form-label">Price <span>( In USD )</span></label>

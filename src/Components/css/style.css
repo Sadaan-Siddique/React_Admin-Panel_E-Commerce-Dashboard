@@ -248,8 +248,6 @@
 
 /* Product List Start */
 .productList {
-  /* border: 2px solid red; */
-  /* background-color: #ffffff00; */
   background-color: rgba(243, 243, 243, 0.233);
 }
 
@@ -258,14 +256,10 @@
   box-shadow: 0px 0px 5px rgb(228, 228, 228);
   background-color: white;
   border-radius: 20px;
-  /* border: 2px solid red; */
 }
 
 .productList .list-div .card {
-  border:none;
-  /* overflow: auto;
-  white-space: 'pre-wrap';
-  word-wrap: 'break-word'; */
+  border: none;
 }
 
 .productList .list-div .card .card-header {
@@ -278,6 +272,20 @@
 
 /* Product List End */
 
+/* Add Product Start */
+.add-product .card {
+  border: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+  background-color: white;
+  border-radius: 20px;
+}
+
+.add-product .card .card-body input {
+  box-shadow: none !important;
+  border-radius: 14px;
+}
+
+/* Add Product End */
 
 /* My Custom CSS End */
 
