@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/style.css';
+import { Link } from 'react-router-dom';
 
 function ProductList() {
     return (
@@ -14,7 +15,7 @@ function ProductList() {
                             <p>Product List</p>
                         </div>
                         <div>
-                            <button className='btn btn-md btn-dark px-2 fw-bold'>Add Product</button>
+                            <Link to={'/addProduct'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-2 fw-bold shadow-none'>Add Product</Link>
                         </div>
                     </div>
                     <div className='list-div mt-4'>

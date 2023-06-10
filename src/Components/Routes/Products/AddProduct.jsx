@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../css/style.css';
+import { Link } from 'react-router-dom';
 
 function AddProduct() {
   return (
@@ -7,7 +8,7 @@ function AddProduct() {
       <div className="container add-product">
         <div className="row">
           <div className="col-12">
-            <div className="breadcrumb-wrapper d-flex align-items-center justify-content-between px-2 py-2">
+            <div className="breadcrumb-wrapper d-flex align-items-center justify-content-between px-3 py-2 my-3">
               <div>
                 <h1>Add Product</h1>
                 <p className="breadcrumbs">
@@ -18,7 +19,7 @@ function AddProduct() {
                 </p>
               </div>
               <div>
-                <a href="product-list.html" className="btn btn-primary">View All</a>
+                <Link to={'/productList'} style={{borderRadius:'10px'}} className="btn btn-md btn-dark px-2 fw-bold shadow-none">View Products</Link>
               </div>
             </div>
             <div className="card card-default mx-3">
@@ -51,37 +52,39 @@ function AddProduct() {
                             </optgroup>
                           </select>
                         </div>
-                        <div className="col-md-12">
-                          <label htmlFor="slug" className="col-12 col-form-label">Slug</label>
+                        <div className="col-lg-6 col-md-6">
+                          <label htmlFor="slug" className="col-form-label">Cost Price</label>
                           <div className="col-12">
                             <input id="slug" name="slug" className="form-control here set-slug" type="text" />
                           </div>
                         </div>
-                        <div className="col-md-12">
-                          <label className="form-label">Sort Description</label>
-                          <textarea className="form-control" rows="2"></textarea>
-                        </div>
-                        <div className="col-md-6">
-                          <label className="form-label">Price <span>( In USD )</span></label>
+                        <div style={{ marginTop: '5px' }} className="col-lg-6 col-md-6">
+                          <label className="form-label">Sales Price
+                            {/* <span>( In USD )</span> */}
+                          </label>
                           <input type="number" className="form-control" id="price1" />
                         </div>
+                        {/* <div className="col-md-12">
+                          <label className="form-label">Sort Description</label>
+                          <textarea className="form-control" rows="2"></textarea>
+                        </div> */}
                         <div className="col-md-6">
                           <label className="form-label">Quantity</label>
                           <input type="number" className="form-control" id="quantity1" />
                         </div>
-                        <div className="col-md-12">
+                        {/* <div className="col-md-12">
                           <label className="form-label">Full Detail</label>
                           <textarea className="form-control" rows="4"></textarea>
-                        </div>
-                        <div className="col-md-12">
+                        </div> */}
+                        {/* <div className="col-md-12">
                           <label className="form-label">Product Tags <span>( Type and make comma to separate tags )</span></label>
                           <div className="bootstrap-tagsinput">
                             <input type="text" placeholder="" />
                           </div>
                           <input type="text" className="form-control" id="group_tag" name="group_tag" value="" placeholder="" data-role="tagsinput" style={{ display: 'none' }} />
-                        </div>
+                        </div> */}
                         <div className="col-md-12">
-                          <button type="submit" className="btn btn-primary">Submit</button>
+                          <button style={{borderRadius:'10px'}} type="submit" className="btn btn-md btn-dark px-2 fw-bold mt-3 shadow-none">Submit</button>
                         </div>
                       </form>
                     </div>

@@ -158,9 +158,14 @@
   color: white;
 }
 
+.input-group input {
+  border-radius: 14px;
+}
+
 .input-group .btn {
   color: white;
   background-color: #434546;
+  border-radius: 14px;
   transition: all;
   transition-duration: 0.3s;
 }
@@ -262,12 +267,22 @@
   border: none;
 }
 
+.productList .list-div .card {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 .productList .list-div .card .card-header {
   background-color: white;
   border-top-left-radius: 13px;
   border-top-right-radius: 20px;
   box-shadow: 0px 0px 1px rgb(219, 219, 219);
 
+}
+
+.datatable-top .datatable-search input {
+  border-radius: 14px;
+  box-shadow: none;
 }
 
 /* Product List End */
@@ -2728,7 +2743,8 @@ textarea.form-control-lg {
   background-position: right 0.75rem center;
   background-size: 16px 12px;
   border: 1px solid #ced4da;
-  border-radius: 0.375rem;
+  /* border-radius: 0.375rem; */
+  border-radius: 14px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2747,7 +2763,7 @@ textarea.form-control-lg {
 .datatable-selector:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  /* box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); */
 }
 
 .form-select[multiple],
@@ -5143,7 +5159,6 @@ fieldset:disabled .btn {
   flex: 1 1 auto;
   border: none;
   padding-right: 10px;
-  overflow-x: auto;
   /* padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x); */
   color: var(--bs-card-color);
 }
@@ -5495,8 +5510,9 @@ fieldset:disabled .btn {
   --bs-pagination-disabled-color: #6c757d;
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
+  min-width: 200px;
   display: flex;
-  padding-left: 0;
+  padding-left: 0;   
   list-style: none;
 }
 
@@ -13303,6 +13319,7 @@ body {
 
 .datatable-bottom {
   padding: 0;
+  overflow-x: auto;
 }
 
 .datatable-top>nav:first-child,
