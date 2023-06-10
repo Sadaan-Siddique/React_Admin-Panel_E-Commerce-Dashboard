@@ -75,6 +75,7 @@ function Navbar() {
                     </ul>
                 </nav>
                 <Sidebar />
+                
             </div >
         </>
     )
