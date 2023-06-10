@@ -116,8 +116,6 @@ function ProductList() {
             stock: 45,
             date: new Date().toLocaleDateString(),
         },
-        
-        
     ]
     return (
         <>
