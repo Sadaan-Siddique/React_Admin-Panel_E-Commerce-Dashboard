@@ -24,8 +24,11 @@ import InventoryDetail from './Components/Routes/Inventory/InventoryDetail';
 // Users
 import UsersList from './Components/Routes/Users/UsersList';
 import UserProfile from './Components/Routes/Users/UserProfile';
+// Auth
+import useAuth from './Hooks/authHook';
 
 function App() {
+  const { authorize } = useAuth();
   return (
     <>
       <Routes>
