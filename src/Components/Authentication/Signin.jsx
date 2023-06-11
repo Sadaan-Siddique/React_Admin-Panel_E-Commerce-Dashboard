@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import Logo from '../../images/dashboard3.png';
 import '../css/style.css';
 
-function Signup() {
+function Signin() {
   return (
     <>
       <div className="container signup d-flex align-items-center justify-content-center ">
         <div className="row justify-content-center">
-          <div className="col-lg-4 col-md-10 col-sm-10 col-10">
+          <div style={{marginBottom:'120px'}} className="col-lg-6 col-md-10 col-sm-10 col-10">
             <div className="card">
               <div className="card-header bg-dark">
                 <div className="ec-brand text-center">
@@ -16,18 +16,11 @@ function Signup() {
                 </div>
               </div>
               <div className="card-body p-4">
-                <h3 className="text-dark text-center fw-bold mb-4">Sign Up</h3>
+                <h3 className="text-dark text-center fw-bold mb-4">Sign In</h3>
                 <form action="/index.html">
 
                   <div className="row">
-                    <div className="form-group col-md-12 mb-4">
-                      <input type="text" className="form-control" placeholder="First Name" />
-                    </div>
-
-                    <div className="form-group col-md-12 mb-4">
-                      <input type="text" className="form-control" placeholder="Last Name" />
-                    </div>
-
+                  
                     <div className="form-group col-md-12 mb-4">
                       <input type="email" className="form-control" placeholder="Email" />
                     </div>
@@ -44,9 +37,9 @@ function Signup() {
                         </div>
                       </div> */}
                       <div className="text-center">
-                        <button style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign Up</button>
-                        <p className="sign-upp">Already have an account?
-                          <Link to={'/signin'} className="text-primary ms-1 fw-bold">Sign in</Link>
+                        <button style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</button>
+                        <p className="sign-upp">Don't have an account?
+                          <Link to={'/signup'} className="text-primary ms-1 fw-bold">Sign up</Link>
                         </p>
                       </div>
                     </div>
@@ -62,4 +55,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Signin;

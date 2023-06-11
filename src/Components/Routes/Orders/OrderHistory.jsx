@@ -16,7 +16,7 @@ function OrderHistory() {
               {/* <p>Product List</p> */}
             </div>
             <div>
-              <Link to={'/newHistory'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-2 fw-bold shadow-none'>New Order</Link>
+              <Link to={'/newHistory'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-3 fw-bold shadow-none'>New Order</Link>
             </div>
           </div>
           <div className='list-div mt-4'>

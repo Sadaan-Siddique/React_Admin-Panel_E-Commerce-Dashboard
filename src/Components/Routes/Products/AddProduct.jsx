@@ -19,7 +19,7 @@ function AddProduct() {
                 </p>
               </div>
               <div>
-                <Link to={'/productList'} style={{borderRadius:'10px'}} className="btn btn-md btn-dark px-2 fw-bold shadow-none">View Products</Link>
+                <Link to={'/productList'} style={{borderRadius:'10px'}} className="btn btn-md btn-dark px-3 fw-bold shadow-none">View Products</Link>
               </div>
             </div>
             <div className="card card-default mx-3">
@@ -84,7 +84,7 @@ function AddProduct() {
                           <input type="text" className="form-control" id="group_tag" name="group_tag" value="" placeholder="" data-role="tagsinput" style={{ display: 'none' }} />
                         </div> */}
                         <div className="col-md-12">
-                          <button style={{borderRadius:'10px'}} type="submit" className="btn btn-md btn-dark px-2 fw-bold mt-3 shadow-none">Submit</button>
+                          <button style={{borderRadius:'10px'}} type="submit" className="btn btn-md btn-dark px-4 fw-bold mt-3 shadow-none">Submit</button>
                         </div>
                       </form>
                     </div>

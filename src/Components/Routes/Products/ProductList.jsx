@@ -16,7 +16,7 @@ function ProductList() {
                             <p>Product List</p>
                         </div>
                         <div>
-                            <Link to={'/addProduct'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-2 fw-bold shadow-none'>Add Product</Link>
+                            <Link to={'/addProduct'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-3 fw-bold shadow-none'>Add Product</Link>
                         </div>
                     </div>
                     <div className='list-div mt-4'>

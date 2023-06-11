@@ -130,7 +130,7 @@ function UsersLists() {
               {/* <p>Product List</p> */}
             </div>
             <div>
-              <Link to={'/'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-2 fw-bold shadow-none'>Add User</Link>
+              <Link to={'/'} style={{ borderRadius: '10px' }} className='btn btn-md btn-dark px-3 fw-bold shadow-none'>Add User</Link>
             </div>
           </div>
           <div className='list-div mt-4'>

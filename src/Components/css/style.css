@@ -108,9 +108,29 @@
 /* Universal Route End */
 
 /* Signup Start */
-.signup .dashboard-logo {
-  width: 30px;
-  height: 29px;
+.signup {
+  height: 100vh;
+  background-color: rgba(243, 243, 243, 0.233);
+}
+
+.signup .card {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+}
+
+.signup .card .card-header {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.signup .card .card-header .dashboard-logo {
+  width: 48px;
+  opacity: 0.9;
+  text-align: center;
+  /* height: 29px; */
   margin-bottom: 2px;
   margin-right: 5px;
   border: 2px solid white;
@@ -122,9 +142,20 @@
   bottom: 1px;
 }
 
-.signup .dashboard-logo:hover {
-  width: 31px;
-  height: 30px;
+.signup .card .card-header .dashboard-logo:hover {
+  opacity: 1;
+}
+
+
+.signup .card .card-body input {
+  box-shadow: none;
+  border-radius: 14px;
+  transition: all;
+  transition-duration: 0.3s;
+}
+
+.signup .card .card-body input:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
 }
 
 /* Signup End */
@@ -182,6 +213,10 @@
 
 .input-group input {
   border-radius: 14px;
+}
+
+.input-group input:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
 }
 
 .input-group .btn {
@@ -320,6 +355,10 @@
 .add-product .card .card-body input {
   box-shadow: none !important;
   border-radius: 14px;
+}
+
+.add-product .card .card-body input:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
 }
 
 /* Add Product End */

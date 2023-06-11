@@ -3,6 +3,7 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import './App.css';
 // Authentication
 import Signup from './Components/Authentication/Signup';
+import Signin from './Components/Authentication/Signin';
 // Navbar
 import Navbar from './Components/Navbar/Navbar';
 // Universal Route
@@ -29,6 +30,7 @@ function App() {
     <>
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
 
         {/* Invalid Routes Handling */}
         <Route path="/" element={<Navigate to={'/dashboard'} />} />
