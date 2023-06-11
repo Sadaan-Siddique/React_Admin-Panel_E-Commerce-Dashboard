@@ -107,6 +107,28 @@
 
 /* Universal Route End */
 
+/* Signup Start */
+.signup .dashboard-logo {
+  width: 30px;
+  height: 29px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 20px;
+  transition: all;
+  transition-duration: 0.7s;
+  position: relative;
+  bottom: 1px;
+}
+
+.signup .dashboard-logo:hover {
+  width: 31px;
+  height: 30px;
+}
+
+/* Signup End */
+
 /* Navbar Start */
 .sb-topnav .navbar-brand {
   margin-left: 20px;
@@ -5512,7 +5534,7 @@ fieldset:disabled .btn {
   --bs-pagination-disabled-border-color: #dee2e6;
   min-width: 200px;
   display: flex;
-  padding-left: 0;   
+  padding-left: 0;
   list-style: none;
 }
 

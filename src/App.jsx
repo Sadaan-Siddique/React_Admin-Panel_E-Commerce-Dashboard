@@ -1,6 +1,9 @@
 import React from 'react';
 import { Navigate, Routes, Route } from "react-router-dom";
 import './App.css';
+// Authentication
+import Signup from './Components/Authentication/Signup';
+// Navbar
 import Navbar from './Components/Navbar/Navbar';
 // Universal Route
 import UniversalRoute from './Components/Universal_Route/UniversalRoute';
@@ -25,6 +28,8 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/signup" element={<Signup />} />
+
         {/* Invalid Routes Handling */}
         <Route path="/" element={<Navigate to={'/dashboard'} />} />
         <Route path="/product" element={<Navigate to={'/productList'} />} />
