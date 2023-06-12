@@ -44,7 +44,7 @@ function Signup() {
                         </div>
                       </div> */}
                       <div className="text-center">
-                        <button style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign Up</button>
+                        <label style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign Up</label>
                         <p className="sign-upp">Already have an account?
                           <Link to={'/signin'} className="text-primary ms-1 fw-bold">Sign in</Link>
                         </p>

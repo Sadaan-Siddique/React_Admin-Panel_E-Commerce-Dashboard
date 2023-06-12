@@ -33,6 +33,7 @@ function App() {
     <>
 
       {authorize ?
+
         <Routes>
 
           {/* Invalid Routes Handling */}
@@ -70,6 +71,7 @@ function App() {
 
           {/* Invalid Routes Handling */}
           <Route path="/" element={<Navigate to={'/signin'} />} />
+          {/* <Route path="/dashboard" element={<Navigate to={'/signin'} />} /> */}
           {/* Authentication Routes */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
@@ -77,6 +79,7 @@ function App() {
           <Route path='*' element={<UniversalRoute />} />
 
         </Routes>
+
       }
 
 

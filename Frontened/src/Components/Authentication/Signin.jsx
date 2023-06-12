@@ -6,6 +6,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/style.css';
+import { bake_cookie } from 'sfcookies';
 function Signin() {
 
   // Hooks
@@ -20,6 +21,7 @@ function Signin() {
   const authorizefunc = (e) => {
     e.preventDefault();
     if (email.current.value === '' || password.current.value === '') {
+
       if (email.current.value === '' && password.current.value === '') {
         alert('Please Write Email and Password')
       } else if (email.current.value === '') {
@@ -27,7 +29,9 @@ function Signin() {
       } else {
         alert('Please Write Password')
       }
+
     } else {
+
       setLoading(true);
       let obj = {
         email: email.current.value,
@@ -42,7 +46,8 @@ function Signin() {
         console.log(res);
         setCssAuthorize(true);
         setTimeout(() => {
-          setAuthorize(true)
+          bake_cookie('isLoggedIn', true);
+          setAuthorize(true);
           navigate('/dashboard');
         }, 2000)
 
@@ -51,14 +56,15 @@ function Signin() {
         console.log(err);
         setLoading(false);
         setAuthorizeStatus('Not Logged In !');
+        bake_cookie('isLoggedIn', false);
         setTimeout(() => {
           setAuthorizeStatus('');
-
         }, 2500)
       })
 
       email.current.value = '';
       password.current.value = '';
+
     }
 
   }
