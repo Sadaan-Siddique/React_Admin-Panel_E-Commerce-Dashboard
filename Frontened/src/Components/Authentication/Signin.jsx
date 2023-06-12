@@ -11,7 +11,7 @@ function Signin() {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [cssAuthorize, setCssAuthorize] = useState(false);
-  const { authorize, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
+  const { setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
   const navigate = useNavigate();
   const email = useRef();
   const password = useRef()
