@@ -111,6 +111,7 @@
 .signup {
   height: 100vh;
   background-color: rgba(243, 243, 243, 0.233);
+  position: relative;
 }
 
 .signup .card {
@@ -159,6 +160,169 @@
 }
 
 /* Signup End */
+
+/* SignIn Start */
+
+.signin {
+  height: 100vh;
+  background-color: rgba(243, 243, 243, 0.233);
+  position: relative;
+}
+
+
+
+
+
+
+
+
+
+.signin .row1 {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+  transition: all;
+  transition-duration: 0.1s;
+  transform: translateY(-300px);
+  top: 0px;
+}
+
+.signin .row1 .card-header .dashboard-logo {
+  width: 48px;
+}
+
+.signin .card {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+}
+
+.signin .card .card-header {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.signin .card .card-header .dashboard-logo {
+  width: 48px;
+  opacity: 0.9;
+  text-align: center;
+  /* height: 29px; */
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 20px;
+  transition: all;
+  transition-duration: 0.7s;
+  position: relative;
+  bottom: 1px;
+}
+
+.signin .card-header .dashboard-logo:hover {
+  opacity: 1;
+}
+
+
+.signin .card .card-body input {
+  box-shadow: none;
+  border-radius: 14px;
+  transition: all;
+  transition-duration: 0.3s;
+}
+
+.signin .card .card-body input:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
+}
+
+/* SignIN True */
+
+.signin-true {
+  height: 100vh;
+  background-color: rgba(199, 199, 199, 0.233);
+  position: relative;
+}
+
+.signin-true .row1 {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+  transition: all;
+  transition-duration: 0.5s;
+  transform: translateY(70px);
+  top: 0px;
+}
+
+.signin-true .row1 .card-header {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.signin-true .row1 .card-header .dashboard-logo {
+  width: 48px;
+  opacity: 0.9;
+  text-align: center;
+  /* height: 29px; */
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 20px;
+  transition: all;
+  transition-duration: 0.7s;
+  position: relative;
+  bottom: 1px;
+}
+.signin-true .row1 .div2{
+  padding: 140px 0px 120px 0px;
+}
+
+
+.signin-true .card {
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+}
+
+.signin-true .card .card-header {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.signin-true .card .card-header .dashboard-logo {
+  width: 48px;
+  opacity: 0.9;
+  text-align: center;
+  /* height: 29px; */
+  margin-bottom: 2px;
+  margin-right: 5px;
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 20px;
+  transition: all;
+  transition-duration: 0.7s;
+  position: relative;
+  bottom: 1px;
+}
+
+.signin-true .card-header .dashboard-logo:hover {
+  opacity: 1;
+}
+
+
+
+/* SignIn End*/
 
 /* Navbar Start */
 .sb-topnav .navbar-brand {

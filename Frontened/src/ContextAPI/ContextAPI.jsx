@@ -5,14 +5,18 @@ function AuthContextAPI({ children }) {
 
     const [toggleTheme, setToggleTheme] = useState(true);
     const [authorize, setAuthorize] = useState(false);
+    const [authorizeStatus, setAuthorizeStatus] = useState('');
     console.log(toggleTheme);
     console.log(authorize);
 
+    const apiUrl = 'http://localhost:5000';
 
     return (
         <AuthContext.Provider value={{
-            toggleTheme,setToggleTheme,
-            authorize,setAuthorize
+            toggleTheme, setToggleTheme,
+            authorize, setAuthorize,
+            authorizeStatus, setAuthorizeStatus,
+            apiUrl
         }}>
             {children}
         </AuthContext.Provider>

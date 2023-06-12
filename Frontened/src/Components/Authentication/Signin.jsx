@@ -2,9 +2,11 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/dashboard3.png';
 import useAuth from '../../Hooks/authHook';
+import axios from 'axios';
 import '../css/style.css';
 function Signin() {
-  const { setAuthorize } = useAuth();
+
+  const { authorize, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
 
   const email = useRef();
   const password = useRef()
@@ -24,14 +26,39 @@ function Signin() {
         email: email.current.value,
         password: password.current.value
       }
-      setAuthorize(true)
+
+      const url = `${apiUrl}/signin`;
+
+      axios.post(url, obj).then((res) => {
+        console.log(res);
+        setAuthorize(true)
+      }).catch((err) => {
+        console.log(err);
+        setAuthorizeStatus('Not Logged In !');
+        setTimeout(() => {
+          setAuthorizeStatus('');
+        }, 2000)
+      })
+
       console.log(obj)
     }
 
   }
   return (
     <>
-      <div className="container signup d-flex align-items-center justify-content-center ">
+      <div className={`container ${authorize ? 'signin-true' : 'signin'} d-flex align-items-center justify-content-center`}>
+        <div className={`row1 col-lg-4 col-md-10 col-sm-10 col-10`}>
+          <div className="card-header py-2 bg-dark">
+            <div className="ec-brand text-center">
+              <img className="dashboard-logo" src={Logo} alt="logo" />
+            </div>
+          </div>
+          <div className='text-center div2'>
+            <h3 className='fw-bold'>
+              You have Logged in Successfully
+            </h3>
+          </div>
+        </div>
         <div className="row justify-content-center">
           <div style={{ marginBottom: '120px' }} className="col-lg-6 col-md-10 col-sm-10 col-10">
             <div className="card">
@@ -63,6 +90,7 @@ function Signin() {
                       </div> */}
                       <div className="text-center">
                         <label onClick={(e) => authorizefunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
+                        <h5 className='text-danger'>{authorizeStatus}</h5>
                         <p className="sign-upp">Don't have an account?
                           <Link to={'/signup'} className="text-primary ms-1 fw-bold">Sign up</Link>
                         </p>
@@ -75,6 +103,7 @@ function Signin() {
           </div>
         </div>
       </div>
+
 
     </>
   )
