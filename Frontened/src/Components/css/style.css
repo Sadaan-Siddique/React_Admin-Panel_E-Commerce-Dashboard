@@ -282,17 +282,15 @@
   position: relative;
   bottom: 1px;
 }
-.signin-true .row1 .div2{
-  padding: 140px 0px 120px 0px;
+
+.signin-true .row1 .div2 {
+  padding: 100px 10px 100px 10px;
 }
 
-
 .signin-true .card {
-  background-color: white;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  box-shadow: 0px 0px 5px rgb(228, 228, 228);
+  transition: all;
+  transition-duration: 0.5s;
+  display: none;
 }
 
 .signin-true .card .card-header {

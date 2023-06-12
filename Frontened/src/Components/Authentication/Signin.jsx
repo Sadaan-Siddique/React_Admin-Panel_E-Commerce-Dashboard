@@ -1,16 +1,22 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/dashboard3.png';
 import useAuth from '../../Hooks/authHook';
+import BeatLoader from "react-spinners/BeatLoader";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../css/style.css';
 function Signin() {
 
+  // Hooks
+  const [loading, setLoading] = useState(false);
+  const [cssAuthorize, setCssAuthorize] = useState(false);
   const { authorize, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
-
+  const navigate = useNavigate();
   const email = useRef();
   const password = useRef()
 
+  // JS
   const authorizefunc = (e) => {
     e.preventDefault();
     if (email.current.value === '' || password.current.value === '') {
@@ -22,6 +28,7 @@ function Signin() {
         alert('Please Write Password')
       }
     } else {
+      setLoading(true);
       let obj = {
         email: email.current.value,
         password: password.current.value
@@ -30,24 +37,35 @@ function Signin() {
       const url = `${apiUrl}/signin`;
 
       axios.post(url, obj).then((res) => {
+
+        setLoading(false);
         console.log(res);
-        setAuthorize(true)
+        setCssAuthorize(true);
+        setTimeout(() => {
+          setAuthorize(true)
+          navigate('/dashboard');
+        }, 2000)
+
       }).catch((err) => {
+
         console.log(err);
+        setLoading(false);
         setAuthorizeStatus('Not Logged In !');
         setTimeout(() => {
           setAuthorizeStatus('');
-        }, 2000)
+
+        }, 2500)
       })
 
-      console.log(obj)
+      email.current.value = '';
+      password.current.value = '';
     }
 
   }
   return (
     <>
-      <div className={`container ${authorize ? 'signin-true' : 'signin'} d-flex align-items-center justify-content-center`}>
-        <div className={`row1 col-lg-4 col-md-10 col-sm-10 col-10`}>
+      <div className={`container ${cssAuthorize ? 'signin-true' : 'signin'} d-flex align-items-center justify-content-center`}>
+        <div className={`row1 col-lg-3 col-md-5 col-sm-6 col-8`}>
           <div className="card-header py-2 bg-dark">
             <div className="ec-brand text-center">
               <img className="dashboard-logo" src={Logo} alt="logo" />
@@ -60,7 +78,7 @@ function Signin() {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div style={{ marginBottom: '120px' }} className="col-lg-6 col-md-10 col-sm-10 col-10">
+          <div style={{ marginBottom: '120px' }} className="col-lg-6 col-md-7 col-sm-8 col-10">
             <div className="card">
               <div className="card-header bg-dark">
                 <div className="ec-brand text-center">
@@ -90,7 +108,11 @@ function Signin() {
                       </div> */}
                       <div className="text-center">
                         <label onClick={(e) => authorizefunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
-                        <h5 className='text-danger'>{authorizeStatus}</h5>
+                        <h5 className='text-danger'>
+                          {loading ?
+                            <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : authorizeStatus
+                          }
+                        </h5>
                         <p className="sign-upp">Don't have an account?
                           <Link to={'/signup'} className="text-primary ms-1 fw-bold">Sign up</Link>
                         </p>
@@ -101,8 +123,8 @@ function Signin() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
 
 
     </>
