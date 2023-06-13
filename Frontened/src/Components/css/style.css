@@ -94,6 +94,10 @@
 
 /* My Custom CSS Start */
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 /* Universal Route Start */
 .div404 {
   margin-top: 100px;
@@ -168,14 +172,6 @@
   background-color: rgba(243, 243, 243, 0.233);
   position: relative;
 }
-
-
-
-
-
-
-
-
 
 .signin .row1 {
   position: absolute;
@@ -4288,7 +4284,7 @@ fieldset:disabled .btn {
   background-color: var(--bs-dropdown-bg);
   background-clip: padding-box;
   border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
-  border-radius: var(--bs-dropdown-border-radius);
+  border-radius: 14px;
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -4521,12 +4517,16 @@ fieldset:disabled .btn {
   white-space: nowrap;
   background-color: transparent;
   border: 0;
+  letter-spacing: 0.3px;
+  transition: all;
+  transition-duration: 0.1s;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
   color: var(--bs-dropdown-link-hover-color);
   background-color: var(--bs-dropdown-link-hover-bg);
+  letter-spacing: 0px;
 }
 
 .dropdown-item.active,
@@ -4539,7 +4539,7 @@ fieldset:disabled .btn {
 .dropdown-item.disabled,
 .dropdown-item:disabled {
   color: var(--bs-dropdown-link-disabled-color);
-  pointer-events: none;
+  /* pointer-events: none; */
   background-color: transparent;
 }
 

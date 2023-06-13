@@ -53,8 +53,8 @@ function Signin() {
 
       }).catch((err) => {
 
-        console.log(err);
         setLoading(false);
+        console.log(err);
         setAuthorizeStatus('Not Logged In !');
         bake_cookie('isLoggedIn', false);
         setTimeout(() => {

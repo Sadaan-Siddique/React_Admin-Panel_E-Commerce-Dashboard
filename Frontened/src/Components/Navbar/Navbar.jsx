@@ -1,22 +1,41 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import '../css/style.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/authHook';
+import PuffLoader from "react-spinners/PuffLoader";
 // import dashboardWhite from '../../images/dashboard.png';
 import dashboardColor from '../../images/dashboard3.png';
+import { delete_cookie } from 'sfcookies';
 
 function Navbar() {
+    const [loading, setLoading] = useState(false);
     const [sidebarVisible, setSidebarVisible] = useState(false);
-    // const [themeBtn, setThemeBtn] = useState(false);
+    const [loggingOut, setLoggingOut] = useState('Logout');
 
-    const { toggleTheme, setToggleTheme } = useAuth()
+    const { toggleTheme, setToggleTheme, setAuthorize } = useAuth();
+    const navigate = useNavigate();
 
     const toggleSidebar = () => {
         setSidebarVisible(!sidebarVisible);
     }
     const toggleThemefunc = () => {
         setToggleTheme(!toggleTheme)
+    }
+
+    const logoutfunc = (event) => {
+        event.stopPropagation();
+        setLoading(true);
+        setTimeout(() => {
+            setLoggingOut('Logging Out');
+        }, 0.0001)
+        setTimeout(() => {
+            setLoading(false);
+            delete_cookie('isLoggedIn');
+            setAuthorize(false);
+            navigate('/');
+            setLoggingOut('Logout');
+        }, 1500)
     }
     return (
         <>
@@ -64,18 +83,28 @@ function Navbar() {
                                 <i className="fas fa-user fa-fw"></i>
                             </label>
                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="/">Settings</a></li>
-                                <li><a className="dropdown-item" href="/">Activity Log</a></li>
+                                <li>
+                                    <label className="dropdown-item">Settings</label>
+                                </li>
+                                <li>
+                                    <label className="dropdown-item">Activity Log</label>
+                                </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
-                                <li><a className="dropdown-item" href="/">Logout</a></li>
+                                <li>
+                                    <label onClick={logoutfunc} style={{ paddingRight: '23%' }} className="dropdown-item cursor-pointer">{loggingOut}
+                                        {loading ?
+                                            <PuffLoader style={{ color: "black", position: "relative", top: "1px", float: 'right' }} size="25px" /> : ''
+                                        }
+                                    </label>
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </nav>
                 <Sidebar />
-                
+
             </div >
         </>
     )

@@ -42,6 +42,8 @@ function App() {
           <Route path="/order" element={<Navigate to={'/newOrder'} />} />
           <Route path="/inventory" element={<Navigate to={'/addInventory'} />} />
           <Route path="/user" element={<Navigate to={'/usersLists'} />} />
+          <Route path="/signup" element={<Navigate to={'/dashboard'} />} />
+          <Route path="/signin" element={<Navigate to={'/dashboard'} />} />
 
           <Route path="/" element={<Navbar />}>
             {/* Main Route */}
@@ -70,9 +72,10 @@ function App() {
         <Routes>
 
           {/* Invalid Routes Handling */}
-          <Route path="/" element={<Navigate to={'/signin'} />} />
+          {/* <Route path="/" element={<Navigate to={'/signin'} />} /> */}
           {/* <Route path="/dashboard" element={<Navigate to={'/signin'} />} /> */}
           {/* Authentication Routes */}
+          <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           {/* Universal Route */}
