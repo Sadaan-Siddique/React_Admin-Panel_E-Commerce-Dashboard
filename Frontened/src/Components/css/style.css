@@ -499,6 +499,16 @@
   border-radius: 14px;
   box-shadow: none;
 }
+.datatable-top .datatable-search input:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.473); 
+}
+.productList .card .card-body table tbody .btn-group .btn{
+  border-radius: 10px;
+}
+.productList .card .card-body table tbody .btn-group ul{
+  width: 50px;
+  margin-right: 20px;
+}
 
 /* Product List End */
 
@@ -13612,7 +13622,7 @@ body {
 .datatable-table>thead>tr>td,
 .datatable-table>thead>tr>th {
   vertical-align: top;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 0.9rem 0.5rem 0.5rem;
 }
 
 .datatable-table>thead>tr>th {

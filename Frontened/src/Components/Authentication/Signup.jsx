@@ -7,8 +7,8 @@ function Signup() {
   return (
     <>
       <div className="container signup d-flex align-items-center justify-content-center ">
-        <div className="row justify-content-center">
-          <div className="col-lg-4 col-md-10 col-sm-10 col-10">
+        <div className="row justify-content-center mb-5">
+          <div className="col-lg-5 col-md-7 col-sm-10 col-10 p-5">
             <div className="card">
               <div className="card-header bg-dark">
                 <div className="ec-brand text-center">

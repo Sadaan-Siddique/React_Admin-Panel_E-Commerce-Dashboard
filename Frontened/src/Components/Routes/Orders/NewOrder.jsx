@@ -47,24 +47,43 @@ function NewOrder() {
                   <table id="datatablesSimple" className='datatable-table'>
                     <thead>
                       <tr>
-                        <th>Items</th>
                         <th>ID</th>
-                        <th>Sale.P</th>
-                        <th>Cost.P</th>
-                        <th>Stock</th>
+                        <th>Product Name</th>
+                        <th>Customer</th>
+                        <th>Items</th>
+                        <th>Price</th>
+                        <th>Status</th>
                         <th>Date</th>
+                        <th>Info</th>
                       </tr>
                     </thead>
                     <tbody>
                       {arr.map((item, index) => {
                         return (
                           <tr key={item.id}>
-                            <td>. {item.product}</td>
                             <td>{index}</td>
+                            <td>. {item.product}</td>
                             <td>{item.sale_p}</td>
                             <td>{item.cost_p}</td>
                             <td>{item.stock}</td>
+                            <td>On Ship</td>
                             <td>{item.date}</td>
+                            <td>
+                              <div className="btn-group">
+                                {/* <button type="button" className="btn btn-outline-dark">Info</button> */}
+                                <button type="button" className="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
+                                  <span className="me-2">Info</span>
+                                </button>
+                                <ul style={{minWidth:'100px'}} className="dropdown-menu">
+                                  <li>
+                                    <label className="dropdown-item">Edit</label>
+                                  </li>
+                                  <li>
+                                    <label className="dropdown-item">Delete</label>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
                           </tr>
                         )
                       })}

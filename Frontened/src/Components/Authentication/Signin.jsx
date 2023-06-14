@@ -83,7 +83,7 @@ function Signin() {
             </h3>
           </div>
         </div>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mb-3">
           <div style={{ marginBottom: '120px' }} className="col-lg-6 col-md-7 col-sm-8 col-10">
             <div className="card">
               <div className="card-header bg-dark">
