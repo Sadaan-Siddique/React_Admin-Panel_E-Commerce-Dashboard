@@ -1,9 +1,9 @@
 // Requires
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
-const db = require('./Models/db_connection');
-const userSchema = require('./Models/UserSchema');
+const db = require('./Models/db_connection.js');
+const userSchema = require('./Models/UserSchema.js');
+const routes_middleWares = require('./Conrollers/routes_middlewares.js');
 
 // Execution
 const app = express();
@@ -12,7 +12,8 @@ const userModel = userSchema.userModel;
 // Middle Wares
 app.use(cors());
 app.use(express.json());
-db.db_Connection()
+db.db_Connection();
+app.use('/',routes_middleWares);
 
 // Routes
 app.post('/signin', async (req, res) => {
