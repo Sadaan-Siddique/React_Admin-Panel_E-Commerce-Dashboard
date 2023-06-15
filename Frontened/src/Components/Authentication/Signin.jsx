@@ -15,10 +15,10 @@ function Signin() {
   const { setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
   const navigate = useNavigate();
   const email = useRef();
-  const password = useRef()
+  const password = useRef();
 
   // JS
-  const authorizefunc = (e) => {
+  const signinfunc = (e) => {
     e.preventDefault();
     if (email.current.value === '' || password.current.value === '') {
 
@@ -112,8 +112,8 @@ function Signin() {
                           <label className="form-check-label" for="agree">I Agree the terms and conditions</label>
                         </div>
                       </div> */}
-                      <div className="text-center">
-                        <label onClick={(e) => authorizefunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
+                      <div className="text-center"> 
+                        <label onClick={(e) => signinfunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
                         <h5 className='text-danger'>
                           {loading ?
                             <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : authorizeStatus

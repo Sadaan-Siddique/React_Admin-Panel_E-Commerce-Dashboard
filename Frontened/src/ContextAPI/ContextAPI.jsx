@@ -9,7 +9,7 @@ function AuthContextAPI({ children }) {
     const [authorize, setAuthorize] = useState(false);
     console.log(authorize);
 
-    const apiUrl = 'http://localhost:5000';
+    const apiUrl = 'http://localhost:5000/api';
 
     const cookieData = read_cookie('isLoggedIn');
     console.log(cookieData);

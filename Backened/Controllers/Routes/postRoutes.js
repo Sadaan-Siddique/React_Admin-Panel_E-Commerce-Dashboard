@@ -6,7 +6,7 @@ const userSchema = require('../../Models/UserSchema');
 const post_route = express();
 const userModel = userSchema.userModel;
 // Routes
-post_route.post('/signin', async (req, res) => {
+post_route.post('/signup', async (req, res) => {
     const newUser = new userModel({
         username: req.body.username,
         email: req.body.email,

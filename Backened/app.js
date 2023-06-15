@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./Models/db_connection.js');
 const userSchema = require('./Models/UserSchema.js');
-const routes_middleWares = require('./Conrollers/routes_middlewares.js');
+const routes_middleWares = require('./Controllers/routes_middlewares.js');
 
 // Execution
 const app = express();

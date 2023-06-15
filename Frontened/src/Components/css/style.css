@@ -118,6 +118,24 @@
   position: relative;
 }
 
+@media screen and (min-width:510px) and (max-width:576px) {
+  .signup .row .col-12 {
+    padding: 100px;
+  }
+}
+
+@media screen and (min-width:410px) and (max-width:510px) {
+  .signup .row .col-12 {
+    padding: 60px;
+  }
+}
+
+@media screen and (min-width:370px) and (max-width:410px) {
+  .signup .row .col-12 {
+    padding: 30px;
+  }
+}
+
 .signup .card {
   background-color: white;
   border: none;
@@ -402,10 +420,10 @@
 
 /* Side Nav Content Start */
 .row1 .card {
-  background-color: white;
   border: none;
   border-radius: 20px;
   outline: none;
+  background-color: white;
   box-shadow: 0px 0px 5px rgb(228, 228, 228);
   transition: all;
   transition-duration: 0.3s;
@@ -499,13 +517,16 @@
   border-radius: 14px;
   box-shadow: none;
 }
+
 .datatable-top .datatable-search input:focus {
-  border: 0.5px solid rgba(0, 0, 0, 0.473); 
+  border: 0.5px solid rgba(0, 0, 0, 0.473);
 }
-.productList .card .card-body table tbody .btn-group .btn{
+
+.productList .card .card-body table tbody .btn-group .btn {
   border-radius: 10px;
 }
-.productList .card .card-body table tbody .btn-group ul{
+
+.productList .card .card-body table tbody .btn-group ul {
   width: 50px;
   margin-right: 20px;
 }
