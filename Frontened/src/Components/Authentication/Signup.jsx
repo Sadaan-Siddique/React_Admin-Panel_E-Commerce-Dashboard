@@ -1,13 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import BeatLoader from "react-spinners/BeatLoader";
 import Logo from '../../images/dashboard3.png';
 import useAuth from '../../Hooks/authHook';
 import axios from 'axios';
 import '../css/style.css';
 
 function Signup() {
-
-  const { apiUrl } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [cssAuthorize, setCssAuthorize] = useState(false);
+  const { apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
 
   const username = useRef();
   const email = useRef();
@@ -20,11 +22,11 @@ function Signup() {
       if (username.current.value === '' && email.current.value === '' && password.current.value === '') {
         alert('Please write Username, Email and Password.');
       } else if (username.current.value === '' && email.current.value === '') {
-        alert("Write Username & Email !");
+        alert("Write Username and Email !");
       } else if (username.current.value === '' && password.current.value === '') {
-        alert('Write Username & Password !');
+        alert('Write Username and Password !');
       } else if (email.current.value === '' && password.current.value === '') {
-        alert('Write Email & Password !');
+        alert('Write Email and Password !');
       } else if (username.current.value === '') {
         alert('Please Write Username.');
       } else if (email.current.value === '') {
@@ -34,6 +36,7 @@ function Signup() {
       }
 
     } else {
+      setLoading(true);
       let obj = {
         username: username.current.value,
         email: email.current.value,
@@ -41,13 +44,28 @@ function Signup() {
       }
       console.log(obj);
       const url = `${apiUrl}/signup`;
-      
-      axios.post(url, obj).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      })
 
+      axios.post(url, obj).then((res) => {
+
+        setLoading(false);
+        setCssAuthorize(true);
+        setAuthorizeStatus(res.data.msg);
+        console.log(res.data);
+        setTimeout(() => {
+          setAuthorizeStatus('');
+        }, 2500)
+
+      }).catch((err) => {
+
+        setLoading(false);
+        setCssAuthorize(false);
+        setAuthorizeStatus(err.response.data);
+        console.log(err.response);
+        setTimeout(() => {
+          setAuthorizeStatus('');
+        }, 3000)
+
+      })
 
     }
 
@@ -92,6 +110,11 @@ function Signup() {
                       </div> */}
                       <div className="text-center">
                         <label onClick={(e) => { signupfunc(e) }} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign Up</label>
+                        <h5 className='text-danger'>
+                          {loading ?
+                            <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : <h5 className={cssAuthorize ? 'text-success' : 'text-danger'}>{authorizeStatus}</h5>
+                          }
+                        </h5>
                         <p className="sign-upp">Already have an account?
                           <Link to={'/signin'} className="text-primary ms-1 fw-bold">
                             {/* <p>Sign in</p> */}
