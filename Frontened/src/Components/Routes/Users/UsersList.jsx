@@ -1,8 +1,13 @@
-import React from 'react';
-import '../../css/style.css';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import '../../css/style.css';
+import axios from 'axios';
+import useAuth from '../../../Hooks/authHook';
 
 function UsersLists() {
+
+  const { apiUrl } = useAuth();
+
   let arr = [
     {
       product: 'Shirt',
@@ -118,6 +123,15 @@ function UsersLists() {
     },
   ]
 
+  useEffect(() => {
+    const url = `${apiUrl}/get_users`;
+    axios.get(url).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
   return (
     <>
       <div className='productList'>
@@ -166,7 +180,7 @@ function UsersLists() {
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Join On</th>
-                        <th>Date</th> 
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
