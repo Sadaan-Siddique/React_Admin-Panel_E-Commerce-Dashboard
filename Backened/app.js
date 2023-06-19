@@ -13,13 +13,13 @@ const userModel = userSchema.userModel;
 app.use(cors());
 app.use(express.json());
 db.db_Connection();
-app.use('/',routes_middleWares);
+app.use('/', routes_middleWares);
 
 // Routes
 app.post('/signin', async (req, res) => {
     console.log(req.body);
-    const output = await userModel.find({});
-    res.status(200).json({msg:'Data Recieved',output});
+    const userOutput = await userModel.findOne({ email: req.body.email });
+    res.status(200).json({ msg: 'You have Logged In Successfully', userOutput });
 });
 
 // Server Start

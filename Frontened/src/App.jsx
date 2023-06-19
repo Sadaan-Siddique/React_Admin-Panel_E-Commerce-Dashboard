@@ -28,44 +28,72 @@ import UserProfile from './Components/Routes/Users/UserProfile';
 import useAuth from './Hooks/authHook';
 
 function App() {
-  const { authorize } = useAuth();
+  const { authorize, roleAuthentication } = useAuth();
   return (
     <>
 
       {authorize ?
 
         <Routes>
+          {roleAuthentication ?
+            <>
+              {/* Invalid Routes Handling */}
+              <Route path="/" element={<Navigate to={'/dashboard'} />} />
+              <Route path="/product" element={<Navigate to={'/productList'} />} />
+              <Route path="/order" element={<Navigate to={'/newOrder'} />} />
+              <Route path="/inventory" element={<Navigate to={'/addInventory'} />} />
+              <Route path="/user" element={<Navigate to={'/usersLists'} />} />
+              <Route path="/signup" element={<Navigate to={'/dashboard'} />} />
+              <Route path="/signin" element={<Navigate to={'/dashboard'} />} />
 
-          {/* Invalid Routes Handling */}
-          <Route path="/" element={<Navigate to={'/dashboard'} />} />
-          <Route path="/product" element={<Navigate to={'/productList'} />} />
-          <Route path="/order" element={<Navigate to={'/newOrder'} />} />
-          <Route path="/inventory" element={<Navigate to={'/addInventory'} />} />
-          <Route path="/user" element={<Navigate to={'/usersLists'} />} />
-          <Route path="/signup" element={<Navigate to={'/dashboard'} />} />
-          <Route path="/signin" element={<Navigate to={'/dashboard'} />} />
+              <Route path="/" element={<Navbar />}>
+                {/* Main Route */}
+                <Route path="dashboard" element={<SideNavContent />} />
+                {/* Products Routes */}
+                <Route path="/productList" element={<ProductList />} />
+                <Route path="/addProduct" element={<AddProduct />} />
+                <Route path="/deleteProduct" element={<DeleteProduct />} />
+                <Route path="/productDetail" element={<ProductDetail />} />
+                {/* Orders Routes */}
+                <Route path="/newOrder" element={<NewOrder />} />
+                <Route path="/orderHistory" element={<OrderHistory />} />
+                {/* Inventory Routes */}
+                <Route path="/addInventory" element={<AddInventory />} />
+                <Route path="/inventoryDetail" element={<InventoryDetail />} />
+                {/* Users Routes */}
+                <Route path="/usersLists" element={<UsersList />} />
+                <Route path="/userProfile" element={<UserProfile />} />
 
-          <Route path="/" element={<Navbar />}>
-            {/* Main Route */}
-            <Route path="dashboard" element={<SideNavContent />} />
-            {/* Products Routes */}
-            <Route path="/productList" element={<ProductList />} />
-            <Route path="/addProduct" element={<AddProduct />} />
-            <Route path="/deleteProduct" element={<DeleteProduct />} />
-            <Route path="/productDetail" element={<ProductDetail />} />
-            {/* Orders Routes */}
-            <Route path="/newOrder" element={<NewOrder />} />
-            <Route path="/orderHistory" element={<OrderHistory />} />
-            {/* Inventory Routes */}
-            <Route path="/addInventory" element={<AddInventory />} />
-            <Route path="/inventoryDetail" element={<InventoryDetail />} />
-            {/* Users Routes */}
-            <Route path="/usersLists" element={<UsersList />} />
-            <Route path="/userProfile" element={<UserProfile />} />
+              </Route>
+              {/* Universal Route */}
+              <Route path='*' element={<UniversalRoute />} />
+            </>
+            :
+            <>
+              {/* Invalid Routes Handling */}
+              <Route path="/" element={<Navigate to={'/productList'} />} />
+              <Route path="/dashboard" element={<Navigate to={'/productList'} />} />
+              <Route path="/signup" element={<Navigate to={'/addProduct'} />} />
+              <Route path="/signin" element={<Navigate to={'/productList'} />} />
 
-          </Route>
-          {/* Universal Route */}
-          <Route path='*' element={<UniversalRoute />} />
+              <Route path="/" element={<Navbar />}>
+                {/* Products Routes */}
+                <Route path="/productList" element={<ProductList />} />
+                <Route path="/addProduct" element={<AddProduct />} />
+                <Route path="/deleteProduct" element={<DeleteProduct />} />
+                <Route path="/productDetail" element={<ProductDetail />} />
+                {/* Orders Routes */}
+                <Route path="/newOrder" element={<NewOrder />} />
+                <Route path="/orderHistory" element={<OrderHistory />} />
+                {/* Inventory Routes */}
+                <Route path="/addInventory" element={<AddInventory />} />
+                <Route path="/inventoryDetail" element={<InventoryDetail />} />
+
+              </Route>
+              {/* Universal Route */}
+              <Route path='*' element={<UniversalRoute />} />
+            </>
+          }
 
         </Routes>
         :
@@ -74,9 +102,8 @@ function App() {
           {/* Invalid Routes Handling */}
           <Route path="/" element={<Navigate to={'/signin'} />} />
           {/* <Route path="/dashboard" element={<Navigate to={'/signin'} />} /> */}
-          
+
           {/* Authentication Routes */}
-          {/* <Route path="/" element={<Signin />} /> */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           {/* Universal Route */}

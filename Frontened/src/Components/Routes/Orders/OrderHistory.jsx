@@ -58,7 +58,7 @@ function OrderHistory() {
                     <tbody>
                       {arr.map((item, index) => {
                         return (
-                          <tr key={item.id}>
+                          <tr key={index}>
                             <td>. {item.product}</td>
                             <td>{index}</td>
                             <td>{item.sale_p}</td>

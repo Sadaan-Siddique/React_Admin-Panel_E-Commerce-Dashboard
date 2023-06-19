@@ -28,7 +28,7 @@ function SideNavContent() {
                                         <label className="small ps-3 stretched-link" href="/">Daily Signups</label>
                                     </div>
                                     <div className="sb-nav-link-icon">
-                                        <i class="bi bi-person-fill-check"></i>
+                                        <i className="bi bi-person-fill-check"></i>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@ function SideNavContent() {
                                         <label className="small ps-3 stretched-link" href="/">Daily Visitors</label>
                                     </div>
                                     <div className="sb-nav-link-icon">
-                                        <i class="bi bi-person-fill-check"></i>
+                                        <i className="bi bi-person-fill-check"></i>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@ function SideNavContent() {
                                         <label className="small ps-3 stretched-link" href="/">Daily Order</label>
                                     </div>
                                     <div className="sb-nav-link-icon">
-                                        <i class="bi bi-person-fill-check"></i>
+                                        <i className="bi bi-person-fill-check"></i>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@ function SideNavContent() {
                                         <label className="small ps-3 stretched-link" href="/">Revenue</label>
                                     </div>
                                     <div className="sb-nav-link-icon">
-                                        <i class="bi bi-person-fill-check"></i>
+                                        <i className="bi bi-person-fill-check"></i>
                                     </div>
                                 </div>
                             </div>

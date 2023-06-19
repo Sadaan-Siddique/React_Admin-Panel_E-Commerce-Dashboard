@@ -1,22 +1,27 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 import Logo from '../../images/dashboard3.png';
 import useAuth from '../../Hooks/authHook';
 import axios from 'axios';
+import { bake_cookie } from 'sfcookies';
 import '../css/style.css';
 
 function Signup() {
+
+  // Hooks
   const [loading, setLoading] = useState(false);
   const [cssAuthorize, setCssAuthorize] = useState(false);
-  const { apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
-
+  const { apiUrl, authorizeStatus, setAuthorizeStatus, setAuthorize } = useAuth();
+  const navigate = useNavigate();
   const username = useRef();
   const email = useRef();
   const password = useRef();
 
+  // JS
   const signupfunc = (e) => {
     e.preventDefault();
+    // Conditions
     if (username.current.value === '' || email.current.value === '' || password.current.value === '') {
 
       if (username.current.value === '' && email.current.value === '' && password.current.value === '') {
@@ -35,8 +40,11 @@ function Signup() {
         alert('Please Write Password.');
       }
 
-    } else {
+    }
+    // Else 
+    else {
       setLoading(true);
+      // Creating Object
       let obj = {
         username: username.current.value,
         email: email.current.value,
@@ -44,23 +52,29 @@ function Signup() {
       }
       console.log(obj);
       const url = `${apiUrl}/signup`;
-
+      // POST Request
       axios.post(url, obj).then((res) => {
 
         setLoading(false);
+        console.log(res.data);
         setCssAuthorize(true);
         setAuthorizeStatus(res.data.msg);
-        console.log(res.data);
         setTimeout(() => {
+          bake_cookie('isLoggedIn', true);
+          setAuthorize(true);
+          navigate('/dashboard');
           setAuthorizeStatus('');
+          username.current.value = '';
+          email.current.value = '';
+          password.current.value = '';
         }, 2500)
 
       }).catch((err) => {
 
         setLoading(false);
-        setCssAuthorize(false);
         setAuthorizeStatus(err.response.data);
-        console.log(err.response);
+        console.log(err);
+        bake_cookie('isLoggedIn', false);
         setTimeout(() => {
           setAuthorizeStatus('');
         }, 3000)
@@ -74,7 +88,19 @@ function Signup() {
 
   return (
     <>
-      <div className="container signup d-flex align-items-center justify-content-center ">
+      <div className={`container signup ${cssAuthorize ? 'signin-true' : 'signin'} d-flex align-items-center justify-content-center `}>
+        <div className={`row1 col-lg-4 col-md-5 col-sm-6 col-8`}>
+          <div className="card-header py-2 bg-dark">
+            <div className="ec-brand text-center">
+              <img className="dashboard-logo" src={Logo} alt="logo" />
+            </div>
+          </div>
+          <div className='text-center div2'>
+            <h3 className='fw-bold'>
+              {authorizeStatus}
+            </h3>
+          </div>
+        </div>
         <div className="row justify-content-center mb-5">
           <div className="col-lg-5 col-md-6 col-sm-9 col-12">
             <div className="card">
@@ -110,9 +136,14 @@ function Signup() {
                       </div> */}
                       <div className="text-center">
                         <label onClick={(e) => { signupfunc(e) }} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign Up</label>
-                        <h5 className='text-danger'>
+                        {/* <h5 className='text-danger'>
                           {loading ?
                             <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : <h5 className={cssAuthorize ? 'text-success' : 'text-danger'}>{authorizeStatus}</h5>
+                          }
+                        </h5> */}
+                        <h5 className='text-danger text-wrap px-4'>
+                          {loading ?
+                            <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : authorizeStatus
                           }
                         </h5>
                         <p className="sign-upp">Already have an account?

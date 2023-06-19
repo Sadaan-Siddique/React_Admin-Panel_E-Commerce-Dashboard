@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/dashboard3.png';
 import useAuth from '../../Hooks/authHook';
@@ -12,7 +12,7 @@ function Signin() {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [cssAuthorize, setCssAuthorize] = useState(false);
-  const { setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus } = useAuth();
+  const { role, setRole, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus, setRoleAuthentication } = useAuth();
   const navigate = useNavigate();
   const email = useRef();
   const password = useRef();
@@ -38,36 +38,51 @@ function Signin() {
         password: password.current.value
       }
 
-      const url = `${apiUrl}/signin`;
+      // const url = `${apiUrl}/signin`;
+      const url = `http://localhost:5000/signin`;
 
       axios.post(url, obj).then((res) => {
 
         setLoading(false);
-        console.log(res);
+        console.log(res.data.userOutput.role);
         setCssAuthorize(true);
+        setAuthorizeStatus(res.data.msg);
+        setRole(res.data.userOutput.role);
         setTimeout(() => {
           bake_cookie('isLoggedIn', true);
           setAuthorize(true);
           navigate('/dashboard');
+          setAuthorizeStatus('');
+          email.current.value = '';
+          password.current.value = '';
         }, 2000)
 
       }).catch((err) => {
 
         setLoading(false);
         console.log(err);
-        setAuthorizeStatus('Not Logged In !');
+        setAuthorizeStatus(err.response.data);
         bake_cookie('isLoggedIn', false);
         setTimeout(() => {
           setAuthorizeStatus('');
         }, 2500)
       })
 
-      email.current.value = '';
-      password.current.value = '';
-
     }
-
   }
+
+  useEffect(() => {
+    if (role === 'admin') {
+      console.log('admin aagya');
+      setRoleAuthentication(true);
+      bake_cookie('isRoleAuthentication', true);
+    } else if (role === 'user') {
+      console.log("user aaya hai");
+      setRoleAuthentication(false);
+      bake_cookie('isRoleAuthentication', false);
+    }
+  }, [role]);
+
   return (
     <>
       <div className={`container ${cssAuthorize ? 'signin-true' : 'signin'} d-flex align-items-center justify-content-center`}>
@@ -79,7 +94,7 @@ function Signin() {
           </div>
           <div className='text-center div2'>
             <h3 className='fw-bold'>
-              You have Logged in Successfully
+              {authorizeStatus}
             </h3>
           </div>
         </div>
@@ -112,7 +127,7 @@ function Signin() {
                           <label className="form-check-label" for="agree">I Agree the terms and conditions</label>
                         </div>
                       </div> */}
-                      <div className="text-center"> 
+                      <div className="text-center">
                         <label onClick={(e) => signinfunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
                         <h5 className='text-danger'>
                           {loading ?
@@ -131,8 +146,6 @@ function Signin() {
           </div>
         </div >
       </div >
-
-
     </>
   )
 }

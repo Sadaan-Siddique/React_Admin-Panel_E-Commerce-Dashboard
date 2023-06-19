@@ -5,7 +5,7 @@ import useAuth from '../../Hooks/authHook';
 
 function Sidebar() {
 
-    const { toggleTheme } = useAuth();
+    const { toggleTheme, roleAuthentication } = useAuth();
 
     return (
         <>
@@ -15,21 +15,26 @@ function Sidebar() {
                     <nav className={`sb-sidenav accordion ${toggleTheme ? 'sb-sidenav-light' : 'sb-sidenav-dark'} `} id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
                             <div className="nav">
-                                {/* <div className="sb-sidenav-menu-heading">Core</div> */}
-                                <Link to={'/dashboard'} className="nav-link mt-3">
-                                    <div className="sb-nav-link-icon">
-                                        <i className="fas fa-tachometer-alt"></i>
-                                    </div>
-                                    Dashboard
-                                </Link>
+
+                                {roleAuthentication ?
+                                    <Link to={'/dashboard'} className="nav-link mt-3">
+                                        <div className="sb-nav-link-icon">
+                                            <i className="fas fa-tachometer-alt"></i>
+                                        </div>
+                                        Dashboard
+                                    </Link> : ''}
+
                                 <div className="sb-sidenav-menu-heading">Views</div>
-                                <Link to={'/dashboard'} className="nav-link">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                    Cash Flow
-                                </Link>
+
+                                {roleAuthentication ?
+                                    <Link to={'/dashboard'} className="nav-link">
+                                        <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
+                                        Cash Flow
+                                    </Link> : ''}
+
                                 <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                     <div className="sb-nav-link-icon">
-                                        <i class="fa fa-th-list"></i>
+                                        <i className="fa fa-th-list"></i>
                                     </div>
                                     Products
                                     <div className="sb-sidenav-collapse-arrow">
@@ -47,7 +52,7 @@ function Sidebar() {
                                 <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                                     aria-expanded="false" aria-controls="collapsePages">
                                     <div className="sb-nav-link-icon">
-                                        <i class="fas fa-shopping-cart"></i>
+                                        <i className="fas fa-shopping-cart"></i>
                                     </div>
                                     Orders
                                     <div className="sb-sidenav-collapse-arrow">
@@ -83,27 +88,32 @@ function Sidebar() {
                                         </Link>
                                     </nav>
                                 </div>
-                                <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
-                                    aria-expanded="false" aria-controls="collapseUsers">
-                                    <div className="sb-nav-link-icon">
-                                        <i className="fas fa-users"></i>
-                                    </div>
-                                    Users
-                                    <div className="sb-sidenav-collapse-arrow">
-                                        <i className="fas fa-angle-down"></i>
-                                    </div>
-                                </label>
-                                <div className="collapse " id="collapseUsers" aria-labelledby="headingTwo"
-                                    data-bs-parent="#sidenavAccordion">
-                                    <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                        <Link to={'/usersLists'} className="nav-link">
-                                            {/* <i className="bi bi-people-fill"></i> */}
-                                            Users List</Link>
-                                        <Link to={'/userProfile'} className="nav-link">
-                                            {/* <i className="bi bi-person-circle"></i> */}
-                                            User Profile</Link>
-                                    </nav>
-                                </div>
+
+                                {roleAuthentication ?
+                                    <>
+                                        <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+                                            aria-expanded="false" aria-controls="collapseUsers">
+                                            <div className="sb-nav-link-icon">
+                                                <i className="fas fa-users"></i>
+                                            </div>
+                                            Users
+                                            <div className="sb-sidenav-collapse-arrow">
+                                                <i className="fas fa-angle-down"></i>
+                                            </div>
+                                        </label>
+                                        <div className="collapse " id="collapseUsers" aria-labelledby="headingTwo"
+                                            data-bs-parent="#sidenavAccordion">
+                                            <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                                <Link to={'/usersLists'} className="nav-link">
+                                                    {/* <i className="bi bi-people-fill"></i> */}
+                                                    Users List</Link>
+                                                <Link to={'/userProfile'} className="nav-link">
+                                                    {/* <i className="bi bi-person-circle"></i> */}
+                                                    User Profile</Link>
+                                            </nav>
+                                        </div>
+                                    </> : ''}
+
                             </div>
                         </div>
                         <div className="sb-sidenav-footer small fw-bold">

@@ -4548,9 +4548,10 @@ fieldset:disabled .btn {
   white-space: nowrap;
   background-color: transparent;
   border: 0;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   transition: all;
   transition-duration: 0.1s;
+  font-weight: 400;
 }
 
 .dropdown-item:hover,
@@ -4558,6 +4559,7 @@ fieldset:disabled .btn {
   color: var(--bs-dropdown-link-hover-color);
   background-color: var(--bs-dropdown-link-hover-bg);
   letter-spacing: 0px;
+  /* font-weight: 600; */
 }
 
 .dropdown-item.active,

@@ -10,6 +10,7 @@ const userModel = userSchema.userModel;
 const secret_Key = process.env.SECRET_KEY;
 
 // Routes
+
 post_route.post('/signup', async (req, res) => {
     try {
         if (req.body.username && req.body.email && req.body.password) {
@@ -45,8 +46,9 @@ post_route.post('/signup', async (req, res) => {
                     id: saveOutput._id,
                     role: saveOutput.role
                 }, secret_Key)
+                // Response
                 res.status(200).json({
-                    msg: "Signed up Successfully.",
+                    msg: "You have Signed up Successfully.",
                     token,
                     saveOutput
                 });
@@ -68,8 +70,17 @@ post_route.post('/signin', async (req, res) => {
             console.log(userOutput);
             if (userOutput) {
                 if (userOutput.password === req.body.password) {
+                    // Creating Token
+                    const token = jwt.sign({
+                        email: userOutput.email,
+                        password: userOutput.password,
+                        id: userOutput._id,
+                        role: userOutput.role
+                    }, secret_Key)
+                    // Response
                     res.status(200).json({
                         msg: 'You have Signed In Successfully',
+                        token,
                         userOutput
                     })
                 } else {

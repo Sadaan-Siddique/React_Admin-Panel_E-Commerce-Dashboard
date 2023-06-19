@@ -13,7 +13,7 @@ function Navbar() {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [loggingOut, setLoggingOut] = useState('Logout');
 
-    const { toggleTheme, setToggleTheme, setAuthorize } = useAuth();
+    const { toggleTheme, setToggleTheme, setAuthorize, setRoleAuthentication } = useAuth();
     const navigate = useNavigate();
 
     const toggleSidebar = () => {
@@ -33,6 +33,8 @@ function Navbar() {
             setLoading(false);
             delete_cookie('isLoggedIn');
             setAuthorize(false);
+            delete_cookie('isRoleAuthentication');
+            setRoleAuthentication(false);
             navigate('/');
             setLoggingOut('Logout');
         }, 1500)
@@ -95,7 +97,7 @@ function Navbar() {
                                 <li>
                                     <label onClick={logoutfunc} style={{ paddingRight: '23%' }} className="dropdown-item cursor-pointer">{loggingOut}
                                         {loading ?
-                                            <PuffLoader style={{ color: "black", position: "relative", top: "1px", float: 'right' }} size="25px" /> : ''
+                                            <PuffLoader style={{ color: "black", position: "relative", bottom: "2.3px", float: 'right' }} size="28px" /> : ''
                                         }
                                     </label>
                                 </li>
