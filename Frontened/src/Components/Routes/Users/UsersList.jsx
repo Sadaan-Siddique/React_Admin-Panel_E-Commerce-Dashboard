@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/style.css';
 import axios from 'axios';
 import useAuth from '../../../Hooks/authHook';
+import BeatLoader from "react-spinners/BeatLoader";
 
 function UsersLists() {
 
+  const [loading, setLoading] = useState(false);
+  const [userArr, setUserArr] = useState([])
   const { apiUrl } = useAuth();
 
   let arr = [
@@ -124,10 +127,15 @@ function UsersLists() {
   ]
 
   useEffect(() => {
+    setLoading(true);
     const url = `${apiUrl}/get_users`;
     axios.get(url).then((res) => {
-      console.log(res);
+      setLoading(false);
+      setUserArr(res.data.users_output);
+      console.log(userArr);
+      console.log(res.data.users_output);
     }).catch((err) => {
+      setLoading(false);
       console.log(err);
     })
   }, [])
@@ -178,25 +186,31 @@ function UsersLists() {
                         <th>Profile</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Phone</th>
+                        <th>ID</th>
                         <th>Join On</th>
-                        <th>Date</th>
+                        <th>Role</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {arr.map((item, index) => {
-                        return (
-                          <tr key={index}>
-                            <td>. {item.product}</td>
-                            <td>{index}</td>
-                            <td>{item.sale_p}</td>
-                            <td>{item.cost_p}</td>
-                            <td>{item.stock}</td>
-                            <td>{item.date}</td>
-                          </tr>
-                        )
-                      })}
-                    </tbody>
+                    {loading ?
+                      <div className='text-center pt-5 pb-3'>
+                        <BeatLoader style={{ color: "black", position: 'relative', left: '180%' }} size="20px" />
+                      </div>
+                      :
+                      <tbody>
+                        {userArr.map((item, index) => {
+                          return (
+                            <tr key={index}>
+                              <td>{index + 1}. Picture</td>
+                              <td>{item.username}</td>
+                              <td>{item.email}</td>
+                              <td>{item._id}</td>
+                              <td>{item.createdOn}</td>
+                              <td>{item.role}</td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    }
                   </table>
                 </div>
                 <div className="datatable-bottom">

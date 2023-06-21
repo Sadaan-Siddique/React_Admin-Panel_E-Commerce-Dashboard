@@ -12,7 +12,7 @@ function Signup() {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [cssAuthorize, setCssAuthorize] = useState(false);
-  const { apiUrl, authorizeStatus, setAuthorizeStatus, setAuthorize } = useAuth();
+  const { apiUrl, authorizeStatus, setAuthorizeStatus, setAuthorize, setRoleAuthentication } = useAuth();
   const navigate = useNavigate();
   const username = useRef();
   const email = useRef();
@@ -62,6 +62,8 @@ function Signup() {
         setTimeout(() => {
           bake_cookie('isLoggedIn', true);
           setAuthorize(true);
+          setRoleAuthentication(false);
+          bake_cookie('isRoleAuthentication', false);
           navigate('/dashboard');
           setAuthorizeStatus('');
           username.current.value = '';

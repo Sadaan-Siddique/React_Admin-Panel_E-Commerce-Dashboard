@@ -73,6 +73,7 @@ function App() {
               {/* Invalid Routes Handling */}
               <Route path="/" element={<Navigate to={'/productList'} />} />
               <Route path="/dashboard" element={<Navigate to={'/productList'} />} />
+              {/* <Route path="/product" element={<Navigate to={'/productList'} />} /> */}
               <Route path="/signup" element={<Navigate to={'/addProduct'} />} />
               <Route path="/signin" element={<Navigate to={'/productList'} />} />
 

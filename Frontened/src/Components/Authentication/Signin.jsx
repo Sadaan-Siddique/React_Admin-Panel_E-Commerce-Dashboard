@@ -66,8 +66,8 @@ function Signin() {
         setTimeout(() => {
           setAuthorizeStatus('');
         }, 2500)
-      })
 
+      })
     }
   }
 
