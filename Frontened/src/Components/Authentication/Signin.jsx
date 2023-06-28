@@ -12,7 +12,7 @@ function Signin() {
   // Hooks
   const [loading, setLoading] = useState(false);
   const [cssAuthorize, setCssAuthorize] = useState(false);
-  const { role, setRole, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus, setRoleAuthentication } = useAuth();
+  const { role, setRole, setAuthorize, apiUrl, authorizeStatus, setAuthorizeStatus, setAdmin } = useAuth();
   const navigate = useNavigate();
   const email = useRef();
   const password = useRef();
@@ -74,12 +74,12 @@ function Signin() {
   useEffect(() => {
     if (role === 'admin') {
       console.log('admin aagya');
-      setRoleAuthentication(true);
-      bake_cookie('isRoleAuthentication', true);
+      setAdmin(true);
+      bake_cookie('isAdmin', true);
     } else if (role === 'user') {
       console.log("user aaya hai");
-      setRoleAuthentication(false);
-      bake_cookie('isRoleAuthentication', false);
+      setAdmin(false);
+      bake_cookie('isAdmin', false);
     }
   }, [role]);
 

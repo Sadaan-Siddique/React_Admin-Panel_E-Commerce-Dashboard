@@ -8,21 +8,21 @@ function AuthContextAPI({ children }) {
     const [role, setRole] = useState('');
     const [toggleTheme, setToggleTheme] = useState(true);
     const [authorize, setAuthorize] = useState(false);
-    const [roleAuthentication, setRoleAuthentication] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     const apiUrl = 'http://localhost:5000/api';
 
     const cookieData_isLoggedIn = read_cookie('isLoggedIn');
-    const cookieData_isRoleAuthentication = read_cookie('isRoleAuthentication');
+    const cookieData_isAdmin = read_cookie('isAdmin');
 
-    console.log(roleAuthentication);
+    console.log(admin);
     useEffect(() => {
         if (cookieData_isLoggedIn === true) {
             setAuthorize(true);
-            if (cookieData_isRoleAuthentication === true) {
-                setRoleAuthentication(true);
+            if (cookieData_isAdmin === true) {
+                setAdmin(true);
             } else {
-                setRoleAuthentication(false);
+                setAdmin(false);
             }
         } else {
             setAuthorize(false);
@@ -34,7 +34,7 @@ function AuthContextAPI({ children }) {
             role, setRole,
             toggleTheme, setToggleTheme,
             authorize, setAuthorize,
-            roleAuthentication, setRoleAuthentication,
+            admin, setAdmin,
             apiUrl
         }}>
             {children}

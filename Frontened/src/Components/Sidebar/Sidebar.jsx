@@ -5,7 +5,7 @@ import useAuth from '../../Hooks/authHook';
 
 function Sidebar() {
 
-    const { toggleTheme, roleAuthentication } = useAuth();
+    const { toggleTheme, admin } = useAuth();
 
     return (
         <>
@@ -16,7 +16,7 @@ function Sidebar() {
                         <div className="sb-sidenav-menu">
                             <div className="nav">
 
-                                {roleAuthentication ?
+                                {admin ?
                                     <Link to={'/dashboard'} className="nav-link mt-3">
                                         <div className="sb-nav-link-icon">
                                             <i className="fas fa-tachometer-alt"></i>
@@ -26,7 +26,7 @@ function Sidebar() {
 
                                 <div className="sb-sidenav-menu-heading">Views</div>
 
-                                {roleAuthentication ?
+                                {admin ?
                                     <Link to={'/dashboard'} className="nav-link">
                                         <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
                                         Cash Flow
@@ -89,7 +89,7 @@ function Sidebar() {
                                     </nav>
                                 </div>
 
-                                {roleAuthentication ?
+                                {admin ?
                                     <>
                                         <label className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
                                             aria-expanded="false" aria-controls="collapseUsers">

@@ -13,7 +13,7 @@ function Navbar() {
     const [sidebarVisible, setSidebarVisible] = useState(false);
     const [loggingOut, setLoggingOut] = useState('Logout');
 
-    const { toggleTheme, setToggleTheme, setAuthorize, setRoleAuthentication } = useAuth();
+    const { toggleTheme, setToggleTheme, setAuthorize, setAdmin } = useAuth();
     const navigate = useNavigate();
 
     const toggleSidebar = () => {
@@ -33,8 +33,8 @@ function Navbar() {
             setLoading(false);
             delete_cookie('isLoggedIn');
             setAuthorize(false);
-            delete_cookie('isRoleAuthentication');
-            setRoleAuthentication(false);
+            delete_cookie('isAdmin');
+            setAdmin(false);
             navigate('/');
             setLoggingOut('Logout');
         }, 1500)

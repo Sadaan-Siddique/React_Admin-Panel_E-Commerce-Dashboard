@@ -28,14 +28,14 @@ import UserProfile from './Components/Routes/Users/UserProfile';
 import useAuth from './Hooks/authHook';
 
 function App() {
-  const { authorize, roleAuthentication } = useAuth();
+  const { authorize, admin } = useAuth();
   return (
     <>
 
       {authorize ?
 
         <Routes>
-          {roleAuthentication ?
+          {admin ?
             <>
               {/* Invalid Routes Handling */}
               <Route path="/" element={<Navigate to={'/dashboard'} />} />
