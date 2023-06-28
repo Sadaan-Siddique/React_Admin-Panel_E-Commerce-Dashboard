@@ -9,7 +9,7 @@ const userModel = userSchema.userModel;
 get_route.get('/get_users', async (req, res) => {
     const users_output = await userModel.find({});
     console.log(users_output);
-
+    
     res.status(200).json({ msg: "Users", users_output });
 })
 
