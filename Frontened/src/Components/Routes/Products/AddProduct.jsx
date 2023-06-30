@@ -29,47 +29,48 @@ function AddProduct() {
 
   const product_img = (e) => {
     const file = e.target.files[0];  // Object
-    setSaveImg(file);  // Object
     setDisplayImg(URL.createObjectURL(file));  // String
+    setSaveImg(e.target.files[0]);  // Object
     setDefault_img(true);
+    console.log(file);
     console.log(saveImg);
   }
 
   const addProductfunc = (e) => {
     e.preventDefault();
     console.log(typeof (productName.current.value));
-    if (
-      productName.current.value === '' ||
-      status.current.value === '' ||
-      costPrice.current.value === '' ||
-      salesPrice.current.value === '' ||
-      quantity.current.value === '' ||
-      productDescription === ''
-    ) {
-      alert("Please fill all the fields");
-    } else {
-      let imgData = new FormData();
-      imgData.append('product_images', saveImg);
+    // if (
+    //   productName.current.value === '' ||
+    //   status.current.value === '' ||
+    //   costPrice.current.value === '' ||
+    //   salesPrice.current.value === '' ||
+    //   quantity.current.value === '' ||
+    //   productDescription === ''
+    // ) {
+    //   alert("Please fill all the fields");
+    // } else {
+    let imgData = new FormData();
+    imgData.append('product_images', saveImg);
 
-      const obj = {
-        productName: productName.current.value,
-        status: status.current.value,
-        costPrice: costPrice.current.value,
-        salesPrice: salesPrice.current.value,
-        quantity: quantity.current.value,
-        productDescription: productDescription.current.value,
-        imgData
-      }
-
-      console.log(obj);
-
-      const url = `${apiUrl}/productImages`;
-      axios.post(url, obj).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      })
+    const obj = {
+      productName: productName.current.value,
+      status: status.current.value,
+      costPrice: costPrice.current.value,
+      salesPrice: salesPrice.current.value,
+      quantity: quantity.current.value,
+      productDescription: productDescription.current.value,
     }
+
+    console.log(obj);
+
+    const url = `${apiUrl}/productImages`;
+    // const url = 'http://localhost:5500/uploadImage'
+    axios.post(url, imgData, obj).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    })
+    // }
   }
 
 
@@ -107,18 +108,17 @@ function AddProduct() {
                               <img id="avatar-preview"
                                 src={default_img ? displayImg : defaultImg}
                                 alt="Avatar" />
-                              <label htmlFor="avatar-upload" title="Upload Image" className="avatar-placeholder" >
+                              <label htmlFor="product_images" title="Upload Image" className="avatar-placeholder" >
                                 <i className="bi bi-images"></i>
                               </label>
                             </div>
-                            <input type="file" id="avatar-upload" onChange={product_img} accept=".png, .jpg, .jpeg" className="avatar-upload" />
+                            <input type="file" id='product_images' onChange={product_img} accept=".png, .jpg, .jpeg" className="avatar-upload" />
                           </div>
                         </div>
                         <div className="col-lg-8">
                           <div className="row">
                             <div className="col-md-6">
-                              <label htm
-                                lFor="inputEmail4" className="form-label">Product name</label>
+                              <label htmlFor="inputEmail4" className="form-label">Product name</label>
                               <input type="text" ref={productName} className="form-control slug-title" id="inputEmail4" />
                             </div>
                             <div className="col-md-6">

@@ -1,7 +1,7 @@
 // Requries
 const express = require('express');
 const userSchema = require('../../Models/UserSchema');
-const multer = reequire('multer');
+const multer = require('multer');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -109,16 +109,18 @@ post_route.post('/signin', async (req, res) => {
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, '/product_images');
+            cb(null, "./Controllers/product_images");
         },
-        filename: function (req, res, cb) {
-            cb(null, file.originalname)
+        filename: function (req, file, cb) {
+            console.log(file);
+            cb(null, file.originalname + "-" + Date.now() + ".jpg");
+            // cb(null, file.originalname);
         }
     })
-}).single()
+}).single("product_images");
 
-// Product Images
-post_route.post('/productImages', (req, res) => {
+// Product Images   
+post_route.post('/productImages', upload, (req, res) => {
     console.log(req.body);
     console.log(req.file);
     res.status(200).send('Porduct Images');
