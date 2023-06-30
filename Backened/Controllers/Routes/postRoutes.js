@@ -1,6 +1,7 @@
 // Requries
 const express = require('express');
 const userSchema = require('../../Models/UserSchema');
+const multer = reequire('multer');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -8,6 +9,9 @@ require('dotenv').config();
 const post_route = express();
 const userModel = userSchema.userModel;
 const secret_Key = process.env.SECRET_KEY;
+
+// Middle Wares
+post_route.use(express.urlencoded({ extended: false }));
 
 // Routes
 
@@ -100,6 +104,29 @@ post_route.post('/signin', async (req, res) => {
     // if (!output ||!bcrypt.compareSync(req.body.password, output.password)) {}
     // let token = jwt.sign({id : output._id},process.env.JWT_KEY,{expiresIn:'3h'})
 })
+
+// Multer
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, '/product_images');
+        },
+        filename: function (req, res, cb) {
+            cb(null, file.originalname)
+        }
+    })
+}).single()
+
+// Product Images
+post_route.post('/productImages', (req, res) => {
+    console.log(req.body);
+    console.log(req.file);
+    res.status(200).send('Porduct Images');
+
+})
+
+
+
 
 // Export
 module.exports = post_route;
