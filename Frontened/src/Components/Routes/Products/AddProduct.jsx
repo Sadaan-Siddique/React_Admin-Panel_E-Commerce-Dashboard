@@ -25,7 +25,10 @@ function AddProduct() {
   // Use Auth
   const { apiUrl } = useAuth();
 
-
+  // JS
+  const imgRemovefunc = () => {
+    setDefault_img(false);
+  }
 
   const product_img = (e) => {
     const file = e.target.files[0];  // Object
@@ -64,7 +67,7 @@ function AddProduct() {
     console.log(obj);
 
     const url = `${apiUrl}/productImages`;
-    // const url = 'http://localhost:5500/uploadImage'
+    // const url = 'http://localhost:5500/uploadImage';
     axios.post(url, imgData, obj).then((res) => {
       console.log(res);
     }).catch((err) => {
@@ -104,12 +107,15 @@ function AddProduct() {
                       <form className="row" onSubmit={addProductfunc}>
                         <div className="col-lg-4 mt-2 mb-2">
                           <div className="avatar-container">
-                            <div className="avatar">
+                            <div className="avatar border border-info border-2">
                               <img id="avatar-preview"
                                 src={default_img ? displayImg : defaultImg}
                                 alt="Avatar" />
                               <label htmlFor="product_images" title="Upload Image" className="avatar-placeholder" >
                                 <i className="bi bi-images"></i>
+                              </label>
+                              <label onClick={imgRemovefunc} className='remove-image'>
+                                <i className="bi bi-x"></i>
                               </label>
                             </div>
                             <input type="file" id='product_images' onChange={product_img} accept=".png, .jpg, .jpeg" className="avatar-upload" />
