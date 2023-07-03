@@ -118,7 +118,7 @@ function AddProduct() {
                       <form className="row" onSubmit={addProductfunc}>
                         <div className="col-lg-4 mt-2 mb-2">
                           <div className="avatar-container">
-                            <div onMouseEnter={hoverfunc} className="avatar border border-info border-2">
+                            <div onMouseEnter={hoverfunc} className="avatar">
                               <img id="avatar-preview"
                                 src={default_img ? displayImg : defaultImg}
                                 alt="Avatar" />
