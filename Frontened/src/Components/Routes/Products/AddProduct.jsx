@@ -59,8 +59,6 @@ function AddProduct() {
       alert("Please fill all the fields");
     } else {
       if (default_img) {
-        let imgData = new FormData();
-        imgData.append('product_images', saveImg);
 
         const obj = {
           productName: productName.current.value,
@@ -70,17 +68,23 @@ function AddProduct() {
           quantity: parseInt(quantity.current.value),
           productDescription: productDescription.current.value,
         }
+        
+        const formData = new FormData();
+        for (let key in obj) {
+          formData.append(`${key}`, obj[key]);
+        }
+        formData.append('product_images', saveImg);
         console.log(saveImg);
-        console.log(obj);
-
+        console.log(formData);
         const url = `${apiUrl}/productImages`;
         // const url = 'http://localhost:5500/uploadImage';
-        axios.post(url, imgData, obj).then((res) => {
-          console.log(res);
-
-        }).catch((err) => {
-          console.log(err);
-        })
+        axios.post(url, formData)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
       } else {
         alert('Upload Image First');
       }

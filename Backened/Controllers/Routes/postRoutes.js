@@ -3,6 +3,7 @@ const express = require('express');
 const userSchema = require('../../Models/UserSchema');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 require('dotenv').config();
 
 // Execution
@@ -11,6 +12,7 @@ const userModel = userSchema.userModel;
 const secret_Key = process.env.SECRET_KEY;
 
 // Middle Wares
+post_route.use(cors());
 post_route.use(express.urlencoded({ extended: false }));
 
 // Routes
@@ -112,6 +114,7 @@ const upload = multer({
             cb(null, "./Controllers/product_images");
         },
         filename: function (req, file, cb) {
+            // console.log(req);
             console.log(file);
             cb(null, file.originalname + "-" + Date.now() + ".jpg");
             // cb(null, file.originalname);
@@ -121,11 +124,37 @@ const upload = multer({
 
 // Product Images   
 post_route.post('/productImages', upload, (req, res) => {
-    console.log(req.body);
-    console.log(req.file);
-    res.status(200).send('Porduct Images');
-
-})
+    try {
+        if (req.file) {
+            if (
+                !req.body.productName ||
+                !req.body.status ||
+                !req.body.salesPrice ||
+                !req.body.costPrice ||
+                !req.body.quantity ||
+                !req.body.productDescription
+            ) {
+                res.status(404).send('Data Not Recieved');
+            } else if (
+                typeof req.body.salesPrice !== 'number' ||
+                typeof req.body.costPrice !== 'number' ||
+                typeof req.body.quantity !== 'number'
+            ) {
+                res.status(400).send('Invalid Data Type');
+            } else {
+                console.log(req.file);
+                console.log(req.body);
+                // console.log(JSON.parse(req.body.obj));
+                res.status(200).send('Product Images');
+            }
+        } else {
+            res.status(404).send('Image Not Received');
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 
 
