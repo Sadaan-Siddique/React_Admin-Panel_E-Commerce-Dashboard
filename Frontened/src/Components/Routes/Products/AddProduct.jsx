@@ -26,8 +26,14 @@ function AddProduct() {
   const { apiUrl } = useAuth();
 
   // JS
+  const hoverfunc = () => {
+
+  }
+
   const imgRemovefunc = () => {
     setDefault_img(false);
+    setSaveImg({});  // Object
+    console.log(saveImg);
   }
 
   const product_img = (e) => {
@@ -42,38 +48,43 @@ function AddProduct() {
   const addProductfunc = (e) => {
     e.preventDefault();
     console.log(typeof (productName.current.value));
-    // if (
-    //   productName.current.value === '' ||
-    //   status.current.value === '' ||
-    //   costPrice.current.value === '' ||
-    //   salesPrice.current.value === '' ||
-    //   quantity.current.value === '' ||
-    //   productDescription === ''
-    // ) {
-    //   alert("Please fill all the fields");
-    // } else {
-    let imgData = new FormData();
-    imgData.append('product_images', saveImg);
+    if (
+      productName.current.value === '' ||
+      status.current.value === '' ||
+      costPrice.current.value === '' ||
+      salesPrice.current.value === '' ||
+      quantity.current.value === '' ||
+      productDescription === ''
+    ) {
+      alert("Please fill all the fields");
+    } else {
+      if (default_img) {
+        let imgData = new FormData();
+        imgData.append('product_images', saveImg);
 
-    const obj = {
-      productName: productName.current.value,
-      status: status.current.value,
-      costPrice: costPrice.current.value,
-      salesPrice: salesPrice.current.value,
-      quantity: quantity.current.value,
-      productDescription: productDescription.current.value,
+        const obj = {
+          productName: productName.current.value,
+          status: status.current.value,
+          costPrice: parseInt(costPrice.current.value),
+          salesPrice: parseInt(salesPrice.current.value),
+          quantity: parseInt(quantity.current.value),
+          productDescription: productDescription.current.value,
+        }
+        console.log(saveImg);
+        console.log(obj);
+
+        const url = `${apiUrl}/productImages`;
+        // const url = 'http://localhost:5500/uploadImage';
+        axios.post(url, imgData, obj).then((res) => {
+          console.log(res);
+
+        }).catch((err) => {
+          console.log(err);
+        })
+      } else {
+        alert('Upload Image First');
+      }
     }
-
-    console.log(obj);
-
-    const url = `${apiUrl}/productImages`;
-    // const url = 'http://localhost:5500/uploadImage';
-    axios.post(url, imgData, obj).then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err);
-    })
-    // }
   }
 
 
@@ -107,14 +118,14 @@ function AddProduct() {
                       <form className="row" onSubmit={addProductfunc}>
                         <div className="col-lg-4 mt-2 mb-2">
                           <div className="avatar-container">
-                            <div className="avatar border border-info border-2">
+                            <div onMouseEnter={hoverfunc} className="avatar border border-info border-2">
                               <img id="avatar-preview"
                                 src={default_img ? displayImg : defaultImg}
                                 alt="Avatar" />
                               <label htmlFor="product_images" title="Upload Image" className="avatar-placeholder" >
                                 <i className="bi bi-images"></i>
                               </label>
-                              <label onClick={imgRemovefunc} className='remove-image'>
+                              <label onClick={imgRemovefunc} className={`${default_img ? 'remove-image' : ''}`}>
                                 <i className="bi bi-x"></i>
                               </label>
                             </div>
@@ -125,7 +136,7 @@ function AddProduct() {
                           <div className="row">
                             <div className="col-md-6">
                               <label htmlFor="inputEmail4" className="form-label">Product name</label>
-                              <input type="text" ref={productName} className="form-control slug-title" id="inputEmail4" />
+                              <input type="text" required ref={productName} className="form-control slug-title" id="inputEmail4" />
                             </div>
                             <div className="col-md-6">
                               <label className="form-label">Status</label>
@@ -139,22 +150,22 @@ function AddProduct() {
                             <div className="col-lg-6 col-md-6">
                               <label htmlFor="slug" className="col-form-label">Cost Price</label>
                               <div className="col-12">
-                                <input id="slug" ref={costPrice} name="slug" className="form-control here set-slug" type="number" />
+                                <input id="slug" required ref={costPrice} name="slug" className="form-control here set-slug" type="number" />
                               </div>
                             </div>
                             <div style={{ marginTop: '5px' }} className="col-lg-6 col-md-6">
                               <label className="form-label">Sales Price
                                 {/* <span>( In USD )</span> */}
                               </label>
-                              <input type="number" ref={salesPrice} className="form-control" id="price1" />
+                              <input type="number" required ref={salesPrice} className="form-control" id="price1" />
                             </div>
                             <div className="col-md-6">
                               <label className="form-label">Quantity</label>
-                              <input type="number" ref={quantity} className="form-control" id="quantity1" />
+                              <input type="number" required ref={quantity} className="form-control" id="quantity1" />
                             </div>
                             <div className="col-md-12">
                               <label className="form-label">Sort Description</label>
-                              <textarea className="form-control" ref={productDescription} rows="4"></textarea>
+                              <textarea className="form-control" required ref={productDescription} rows="4"></textarea>
                             </div>
                             <div className="col-md-12">
                               <button style={{ borderRadius: '10px' }} type="submit" className="btn btn-md btn-dark px-4 fw-bold mt-3 shadow-none">Submit</button>
