@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 
 // Product Schema
 const productSchema = new mongoose.Schema({
-    imageName: {
+    imageOriginalName: {
         type: String,
         required: true
     },
     imageUrl: {
+        type: String,
+        required: true
+    },
+    imageFileName: {
         type: String,
         required: true
     },
@@ -34,6 +38,9 @@ const productSchema = new mongoose.Schema({
     productDescription: {
         type: String,
         required: true
+    },
+    addedOn: {
+        type: String
     }
 })
 

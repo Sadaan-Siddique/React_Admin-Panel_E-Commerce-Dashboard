@@ -1,14 +1,16 @@
 // Requries
 const express = require('express');
-const userSchema = require('../../Models/UserSchema');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
+const userSchema = require('../../Models/UserSchema');
+const productSchema = require('../../Models/ProductSchema');
 const cors = require('cors');
 require('dotenv').config();
 
 // Execution
 const post_route = express();
 const userModel = userSchema.userModel;
+const productModel = productSchema.productModel;
 const secret_Key = process.env.SECRET_KEY;
 
 // Middle Wares
@@ -114,7 +116,6 @@ const upload = multer({
             cb(null, "./Controllers/product_images");
         },
         filename: function (req, file, cb) {
-            // console.log(req);
             console.log(file);
             cb(null, file.originalname + "-" + Date.now() + ".jpg");
             // cb(null, file.originalname);
@@ -123,7 +124,7 @@ const upload = multer({
 }).single("product_images");
 
 // Product Images   
-post_route.post('/productImages', upload, (req, res) => {
+post_route.post('/productImages', upload, async (req, res) => {
     try {
         if (req.file) {
             if (
@@ -136,16 +137,39 @@ post_route.post('/productImages', upload, (req, res) => {
             ) {
                 res.status(404).send('Data Not Recieved');
             } else if (
-                typeof req.body.salesPrice !== 'number' ||
-                typeof req.body.costPrice !== 'number' ||
-                typeof req.body.quantity !== 'number'
+                // If is Not a Number or cannot be converted to a number, it will return true otherwise false.
+                isNaN(req.body.costPrice) ||
+                isNaN(req.body.salesPrice) ||
+                isNaN(req.body.quantity)
             ) {
-                res.status(400).send('Invalid Data Type');
+                res.status(400).send('Invalid Data Type !');
             } else {
                 console.log(req.file);
-                console.log(req.body);
-                // console.log(JSON.parse(req.body.obj));
-                res.status(200).send('Product Images');
+
+                // Because due to fromData all the values are coming with String Data Type.
+                const costPrice = parseInt(req.body.costPrice);
+                const salesPrice = parseInt(req.body.salesPrice);
+                const quantity = parseInt(req.body.quantity);
+                req.body.costPrice = costPrice;
+                req.body.salesPrice = salesPrice;
+                req.body.quantity = quantity;
+
+                // Creating Date on Which the Product is added.
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+                const currentDate = new Date().toLocaleString('en-US', options).replace(/, /g, '-');
+
+                const newProduct = new productModel({
+                    imageOriginalName: req.file.originalname,
+                    imageUrl: req.file.path,
+                    imageFileName:req.file.filename,
+                    addedOn: currentDate,
+                    ...req.body,
+                })
+                console.log(newProduct);
+                const saveOutput = await newProduct.save();
+
+                console.log(saveOutput);
+                res.status(200).json({ msg: 'Product have been Created', saveOutput });
             }
         } else {
             res.status(404).send('Image Not Received');

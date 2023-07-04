@@ -25,10 +25,7 @@ function AddProduct() {
   // Use Auth
   const { apiUrl } = useAuth();
 
-  // JS
-  const hoverfunc = () => {
-
-  }
+  // JS 
 
   const imgRemovefunc = () => {
     setDefault_img(false);
@@ -68,17 +65,23 @@ function AddProduct() {
           quantity: parseInt(quantity.current.value),
           productDescription: productDescription.current.value,
         }
-        
+        console.log(obj);
         const formData = new FormData();
         for (let key in obj) {
           formData.append(`${key}`, obj[key]);
+          console.log(obj[key]);
         }
         formData.append('product_images', saveImg);
         console.log(saveImg);
         console.log(formData);
         const url = `${apiUrl}/productImages`;
         // const url = 'http://localhost:5500/uploadImage';
-        axios.post(url, formData)
+        axios.post(url, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data' // Add the appropriate Content-Type header
+          }
+        }
+        )
           .then((res) => {
             console.log(res);
           })
@@ -122,7 +125,7 @@ function AddProduct() {
                       <form className="row" onSubmit={addProductfunc}>
                         <div className="col-lg-4 mt-2 mb-2">
                           <div className="avatar-container">
-                            <div onMouseEnter={hoverfunc} className="avatar">
+                            <div className="avatar">
                               <img id="avatar-preview"
                                 src={default_img ? displayImg : defaultImg}
                                 alt="Avatar" />
