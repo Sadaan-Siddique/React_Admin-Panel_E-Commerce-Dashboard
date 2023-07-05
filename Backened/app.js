@@ -10,10 +10,11 @@ const app = express();
 const userModel = userSchema.userModel;
 
 // Middle Wares
+db.db_Connection();
 app.use(cors());
 app.use(express.json());
-db.db_Connection();
 app.use('/', routes_middleWares);
+app.use('/product_images', (express.static('product_images')));
 
 // Routes
 app.post('/signin', async (req, res) => {

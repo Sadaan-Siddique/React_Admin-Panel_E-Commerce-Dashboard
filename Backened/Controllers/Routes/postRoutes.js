@@ -113,7 +113,7 @@ post_route.post('/signin', async (req, res) => {
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, "./Controllers/product_images");
+            cb(null, "./product_images");
         },
         filename: function (req, file, cb) {
             console.log(file);
@@ -164,7 +164,7 @@ post_route.post('/productImages', upload, async (req, res) => {
                     imageFileName:req.file.filename,
                     addedOn: currentDate,
                     ...req.body,
-                })
+                })  
                 console.log(newProduct);
                 const saveOutput = await newProduct.save();
 

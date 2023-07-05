@@ -9,7 +9,7 @@ function UniversalRoute() {
         setTimeout(() => {
             navigate('/');
         }, 2000)
-    }, [navigate])
+    }, [navigate]);
     return (
         <>
             <div className="container text-center mt-4">

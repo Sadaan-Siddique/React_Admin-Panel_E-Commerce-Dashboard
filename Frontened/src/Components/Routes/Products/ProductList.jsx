@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../css/style.css';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/authHook';
+import axios from 'axios';
 import arr from '../Data';
 
 function ProductList() {
+    // Hooks
+    const [productsArr, setProductsArr] = useState([]);
+    const { apiUrl } = useAuth();
+    useEffect(() => {
+        const url = `${apiUrl}/get_products`;
+        axios.get(url).then((res) => {
+            console.log(res.data.modified_products);
+            setProductsArr(res.data.modified_products);
+            console.log(productsArr);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
+
     return (
         <>
             <div className='productList'>
@@ -48,33 +64,42 @@ function ProductList() {
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th>Id</th>
+                                                <th>Name</th>
                                                 <th>Sale.P</th>
                                                 <th>Cost.P</th>
                                                 <th>Stock</th>
-                                                <th>Date</th>
+                                                <th>Info</th>
                                             </tr>
                                         </thead>
-                                        {/* <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> */}
                                         <tbody>
-                                            {arr.map((item, index) => {
+                                            {productsArr.map((item, index) => {
                                                 return (
                                                     <tr key={index}>
-                                                        <td>. {item.product}</td>
-                                                        <td>{index}</td>
-                                                        <td>{item.sale_p}</td>
-                                                        <td>{item.cost_p}</td>
-                                                        <td>{item.stock}</td>
-                                                        <td>{item.date}</td>
+
+                                                        <td>
+                                                            <span>{index}. </span>
+                                                            <img style={{ width: '40px' }} src={item.imageUrl} alt='img' />
+                                                        </td>
+                                                        <td>{item.productName}</td>
+                                                        <td>{item.salesPrice}</td>
+                                                        <td>{item.costPrice}</td>
+                                                        <td>{item.quantity}</td>
+                                                        <td>
+                                                            <div className="btn-group">
+                                                                {/* <button type="button" className="btn btn-outline-dark">Info</button> */}
+                                                                <button type="button" className="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
+                                                                    <span className="me-2">Info</span>
+                                                                </button>
+                                                                <ul style={{ minWidth: '100px' }} className="dropdown-menu">
+                                                                    <li>
+                                                                        <label className="dropdown-item">Edit</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <label className="dropdown-item">Delete</label>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                                 )
                                             })}
