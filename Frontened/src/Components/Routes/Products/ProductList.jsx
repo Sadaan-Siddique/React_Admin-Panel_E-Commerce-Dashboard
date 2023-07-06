@@ -3,22 +3,55 @@ import '../../css/style.css';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/authHook';
 import axios from 'axios';
-import arr from '../Data';
+import BeatLoader from "react-spinners/BeatLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 
 function ProductList() {
-    // Hooks
-    const [productsArr, setProductsArr] = useState([]);
     const { apiUrl } = useAuth();
+    const [beatLoader, setBeatLoader] = useState(false);
+    const [isData, setIsData] = useState(true);
+    const [errMsg, setErrMsg] = useState('');
+    const [productsArr, setProductsArr] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage, setProductsPerPage] = useState(7);
+
     useEffect(() => {
+
+        setBeatLoader(true);
+        setErrMsg('');
         const url = `${apiUrl}/get_products`;
         axios.get(url).then((res) => {
             console.log(res.data.modified_products);
             setProductsArr(res.data.modified_products);
+            setBeatLoader(false);
+            setIsData(false);
             console.log(productsArr);
         }).catch((err) => {
             console.log(err);
-        })
-    }, [])
+            setErrMsg(`Data Not Found (${err.message})`);
+            setBeatLoader(false);
+            setIsData(true);
+        });
+    }, []);
+
+    // Get current products based on pagination
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const paginate = (pageNumber) => {
+        if (pageNumber < 1) {
+            setCurrentPage(5);
+        } else if (pageNumber > 5) {
+            setCurrentPage(1);
+        } else {
+            setCurrentPage(pageNumber);
+        }
+    };
+    const setPageFunc = (event) => {
+        const selectedValue = event.target.value;
+        setProductsPerPage(selectedValue);
+    }
 
     return (
         <>
@@ -45,12 +78,12 @@ function ProductList() {
                                 <div className="datatable-top">
                                     <div className="datatable-dropdown">
                                         <label>
-                                            <select className="datatable-selector" defaultValue="10">
+                                            <select onChange={setPageFunc} className="datatable-selector" defaultValue="0">
+                                                <option className='d-none' value="0">0</option>
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
                                                 <option value="20">20</option>
-                                                <option value="25">25</option>
                                             </select>
                                             Entries
                                         </label>
@@ -71,88 +104,86 @@ function ProductList() {
                                                 <th>Info</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            {productsArr.map((item, index) => {
-                                                return (
-                                                    <tr key={index}>
+                                        {beatLoader ?
+                                            <div style={{ paddingBottom: '', position: 'relative', left: '180%' }} className='text-center pt-5'>
+                                                <BeatLoader style={{ color: "black" }} size="18px" />
+                                            </div>
+                                            :
+                                            <>
 
-                                                        <td>
-                                                            <span>{index}. </span>
-                                                            <img style={{ width: '40px' }} src={item.imageUrl} alt='img' />
-                                                        </td>
-                                                        <td>{item.productName}</td>
-                                                        <td>{item.salesPrice}</td>
-                                                        <td>{item.costPrice}</td>
-                                                        <td>{item.quantity}</td>
-                                                        <td>
-                                                            <div className="btn-group">
-                                                                {/* <button type="button" className="btn btn-outline-dark">Info</button> */}
-                                                                <button type="button" className="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
-                                                                    <span className="me-2">Info</span>
-                                                                </button>
-                                                                <ul style={{ minWidth: '100px' }} className="dropdown-menu">
-                                                                    <li>
-                                                                        <label className="dropdown-item">Edit</label>
-                                                                    </li>
-                                                                    <li>
-                                                                        <label className="dropdown-item">Delete</label>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })}
-                                        </tbody>
+                                                <tbody>
+
+                                                    {currentProducts.map((item, index) => {
+                                                        return (
+                                                            <tr key={index} >
+                                                                <td>
+                                                                    <img src={item.imageUrl} alt='img' />
+                                                                </td>
+                                                                <td>{item.productName}</td>
+                                                                <td>{item.salesPrice}</td>
+                                                                <td>{item.costPrice}</td>
+                                                                <td>{item.quantity}</td>
+                                                                <td>
+                                                                    <div className="btn-group">
+                                                                        {/* <button type="button" className="btn btn-outline-dark">Info</button> */}
+                                                                        <button type="button" className="btn btn-sm btn-outline-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
+                                                                            <span className="me-2">Info</span>
+                                                                        </button>
+                                                                        <ul style={{ minWidth: '100px' }} className="dropdown-menu">
+                                                                            <li>
+                                                                                <label className="dropdown-item">Edit</label>
+                                                                            </li>
+                                                                            <li>
+                                                                                <label className="dropdown-item">Delete</label>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                    }
+                                                </tbody>
+                                            </>
+                                        }
                                     </table>
                                 </div>
-                                <div className="datatable-bottom">
-                                    <div className="datatable-info">Showing 1 to 5 of 57 entries</div>
-                                    <nav className="datatable-pagination">
-                                        <ul className="datatable-pagination-list">
-                                            <li className="datatable-pagination-list-item datatable-hidden datatable-disabled">
-                                                <a data-page="1" href='/' className="datatable-pagination-list-item-link">‹</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item datatable-active">
-                                                <a data-page="1" href='/' className="datatable-pagination-list-item-link">1</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="2" href='/' className="datatable-pagination-list-item-link">2</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="3" href='/' className="datatable-pagination-list-item-link">3</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="4" href='/' className="datatable-pagination-list-item-link">4</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="5" href='/' className="datatable-pagination-list-item-link">5</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="6" href='/' className="datatable-pagination-list-item-link">6</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="7" href='/' className="datatable-pagination-list-item-link">7</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item datatable-ellipsis datatable-disabled">
-                                                <a href='/' className="datatable-pagination-list-item-link">…</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="12" href='/' className="datatable-pagination-list-item-link">12</a>
-                                            </li>
-                                            <li className="datatable-pagination-list-item">
-                                                <a data-page="2" href='/' className="datatable-pagination-list-item-link">›</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                {isData ?
+                                    <div style={{ position: 'relative', top: '20px' }} className="text-center">
+                                        <h2 className='fw-bold text-danger'>{errMsg}</h2>
+                                    </div>
+                                    :
+                                    <div className="datatable-bottom">
+                                        <div className="datatable-info">{`Showing ${currentPage * productsPerPage} to ${currentPage * productsPerPage} of ${productsArr.length} Products`}</div>
+                                        <div className="datatable-pagination">
+                                            <ul className="datatable-pagination-list">
+                                                <li className={`datatable-pagination-list-item ${currentPage === 1 ? 'datatable-hidden datatable-disabled' : ''}`}>
+                                                    <button onClick={() => paginate(currentPage - 1)} className="datatable-pagination-list-item-link">‹</button>
+                                                </li>
+                                                {Array.from({ length: Math.ceil(productsArr.length / productsPerPage) }).map((_, index) => (
+                                                    <li
+                                                        key={index}
+                                                        className={`datatable-pagination-list-item ${currentPage === index + 1 ? 'datatable-active' : ''}`}
+                                                    >
+                                                        <button onClick={() => paginate(index + 1)} className="datatable-pagination-list-item-link">
+                                                            {index + 1}
+                                                        </button>
+                                                    </li>
+                                                ))}
+                                                <li className={`datatable-pagination-list-item ${currentPage === Math.ceil(productsArr.length / productsPerPage) ? 'datatable-hidden datatable-disabled' : ''}`}>
+                                                    <button onClick={() => paginate(currentPage + 1)} className="datatable-pagination-list-item-link">›</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-export default ProductList
+export default ProductList;

@@ -531,6 +531,18 @@
   margin-right: 20px;
 }
 
+.productList table tbody tr img {
+  max-width: none !important;
+  border-radius: 10px;
+  min-width: 55px;
+  height: 45px;
+}
+
+.productList table tbody tr:hover td:first-child img {
+  transition: all 0.3s;
+  transform: scale(1.15)!important ;
+}
+
 /* Product List End */
 
 /* Add Product Start */
@@ -2669,7 +2681,7 @@ progress {
 
 .table>tbody,
 .datatable-table>tbody {
-  vertical-align: inherit;
+  vertical-align: center;
 }
 
 .table>thead,
@@ -13778,7 +13790,7 @@ body {
 .datatable-table>tfoot>tr>th,
 .datatable-table>thead>tr>td,
 .datatable-table>thead>tr>th {
-  vertical-align: top;
+  vertical-align: center;
   padding: 0.5rem 0.9rem 0.5rem 0.5rem;
 }
 

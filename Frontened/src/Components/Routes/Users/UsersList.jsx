@@ -77,8 +77,8 @@ function UsersLists() {
                       </tr>
                     </thead>
                     {loading ?
-                      <div className='text-center pt-5 pb-3'>
-                        <BeatLoader style={{ color: "black", position: 'relative', left: '180%' }} size="20px" />
+                      <div style={{ paddingBottom: '16px' }} className='text-center pt-5'>
+                        <BeatLoader style={{ color: "black", position: 'relative', left: '180%' }} size="18px" />
                       </div>
                       :
                       <tbody>
@@ -141,8 +141,8 @@ function UsersLists() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     </>
   )
 }
