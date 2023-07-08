@@ -13,10 +13,12 @@ function ProductList() {
     const [errMsg, setErrMsg] = useState('');
     const [productsArr, setProductsArr] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage, setProductsPerPage] = useState(7);
+    const [productsPerPage, setProductsPerPage] = useState(5);
 
     useEffect(() => {
-
+        fetchData();
+    }, []);
+    function fetchData() {
         setBeatLoader(true);
         setErrMsg('');
         const url = `${apiUrl}/get_products`;
@@ -32,17 +34,25 @@ function ProductList() {
             setBeatLoader(false);
             setIsData(true);
         });
-    }, []);
+    }
 
     // Get current products based on pagination
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
+    console.log(currentProducts);
+    useEffect(() => {
+        if (currentProducts === []) {
+            const currentProducts = productsPerPage;
+        } else {
+            const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
+        }
+    }, [currentProducts]);
 
     const paginate = (pageNumber) => {
         if (pageNumber < 1) {
-            setCurrentPage(5);
-        } else if (pageNumber > 5) {
+            setCurrentPage(Math.ceil(productsArr.length / productsPerPage));
+        } else if (pageNumber > Math.ceil(productsArr.length / productsPerPage)) {
             setCurrentPage(1);
         } else {
             setCurrentPage(pageNumber);
@@ -78,8 +88,7 @@ function ProductList() {
                                 <div className="datatable-top">
                                     <div className="datatable-dropdown">
                                         <label>
-                                            <select onChange={setPageFunc} className="datatable-selector" defaultValue="0">
-                                                <option className='d-none' value="0">0</option>
+                                            <select onChange={setPageFunc} className="datatable-selector" defaultValue="5">
                                                 <option value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="15">15</option>
@@ -151,10 +160,20 @@ function ProductList() {
                                 {isData ?
                                     <div style={{ position: 'relative', top: '20px' }} className="text-center">
                                         <h2 className='fw-bold text-danger'>{errMsg}</h2>
+                                        {errMsg !== '' ?
+                                            <h5 className='mt-3'>Please try again Later
+                                                <button onClick={fetchData} className='btn btn-sm btn-dark px-3 rounded fw-bold ms-5 shadow-none'>Reload</button>
+                                            </h5>
+                                            : ''}
                                     </div>
                                     :
                                     <div className="datatable-bottom">
-                                        <div className="datatable-info">{`Showing ${currentPage * productsPerPage} to ${currentPage * productsPerPage} of ${productsArr.length} Products`}</div>
+                                        <div className="datatable-info">
+                                            {`Showing ${(currentPage - 1) * productsPerPage + 1}
+                                             to ${currentPage * productsPerPage > productsArr.length ? productsArr.length :
+                                                    currentPage * productsPerPage} 
+                                                of ${productsArr.length} Products`}
+                                        </div>
                                         <div className="datatable-pagination">
                                             <ul className="datatable-pagination-list">
                                                 <li className={`datatable-pagination-list-item ${currentPage === 1 ? 'datatable-hidden datatable-disabled' : ''}`}>
