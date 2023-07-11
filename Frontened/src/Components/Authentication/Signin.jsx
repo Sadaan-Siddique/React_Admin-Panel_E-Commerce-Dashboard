@@ -68,7 +68,9 @@ function Signin() {
         }
         bake_cookie('isLoggedIn', false);
         setTimeout(() => {
-          setAuthorizeStatus('');
+          if (err.response) {
+            setAuthorizeStatus('');
+          }
         }, 2500)
 
       })
@@ -135,7 +137,14 @@ function Signin() {
                         <label onClick={(e) => signinfunc(e)} style={{ borderRadius: '10px' }} className="btn btn-md btn-dark px-4 fw-bold shadow-none mt-2 mb-3 ">Sign In</label>
                         <h5 className='text-danger'>
                           {loading ?
-                            <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : authorizeStatus
+                            <BeatLoader style={{ color: "black", position: "relative", top: "2px" }} size="12px" /> : <> {authorizeStatus === 'Network Error' ?
+                              <>
+                                {authorizeStatus}
+                                <span onClick={signinfunc} style={{ textDecoration: 'underline', cursor: 'pointer' }} className='text-dark h6 ms-2'>Try Again</span>
+                              </>
+                              : authorizeStatus}
+
+                            </>
                           }
                         </h5>
                         <p className="sign-upp">Don't have an account?

@@ -2,6 +2,7 @@
 const express = require('express');
 const userSchema = require('../../Models/UserSchema');
 const productSchema = require('../../Models/ProductSchema');
+const path = require('path');
 
 // Execution
 const get_route = express();
@@ -41,6 +42,7 @@ get_route.get('/get_products', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 })
+get_route.use(express.static(path.join(__dirname, 'public'), { maxAge: '1y' }));
 
 // Exports
 module.exports = get_route;

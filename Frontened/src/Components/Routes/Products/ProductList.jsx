@@ -5,6 +5,7 @@ import useAuth from '../../../Hooks/authHook';
 import axios from 'axios';
 import BeatLoader from "react-spinners/BeatLoader";
 import PuffLoader from "react-spinners/PuffLoader";
+import LazyLoad from 'react-lazyload';
 
 function ProductList() {
     const { apiUrl } = useAuth();
@@ -30,7 +31,11 @@ function ProductList() {
             console.log(productsArr);
         }).catch((err) => {
             console.log(err);
-            setErrMsg(`Data Not Found (${err.message})`);
+            if (err.response) {
+                setErrMsg(`Data Not Found (${err.response.data})`);
+            } else {
+                setErrMsg(`Data Not Found (${err.message})`);
+            }
             setBeatLoader(false);
             setIsData(true);
         });
@@ -40,14 +45,6 @@ function ProductList() {
     const indexOfLastProduct = Math.min(currentPage * productsPerPage, productsArr.length);
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
-    console.log(currentProducts);
-    useEffect(() => {
-        if (currentProducts === []) {
-            const currentProducts = productsPerPage;
-        } else {
-            const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
-        }
-    }, [currentProducts]);
 
     const paginate = (pageNumber) => {
         if (pageNumber < 1) {
@@ -114,7 +111,7 @@ function ProductList() {
                                             </tr>
                                         </thead>
                                         {beatLoader ?
-                                            <div style={{ paddingBottom: '', position: 'relative', left: '180%' }} className='text-center pt-5'>
+                                            <div style={{ position: 'relative', left: '180%' }} className='text-center pt-5'>
                                                 <BeatLoader style={{ color: "black" }} size="18px" />
                                             </div>
                                             :
@@ -125,7 +122,9 @@ function ProductList() {
                                                         return (
                                                             <tr key={index} >
                                                                 <td>
-                                                                    <img src={item.imageUrl} alt='img' />
+                                                                    <LazyLoad height={200} once>
+                                                                        <img src={item.imageUrl} alt='img' />
+                                                                    </LazyLoad>
                                                                 </td>
                                                                 <td>{item.productName}</td>
                                                                 <td>{item.salesPrice}</td>
