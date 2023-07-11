@@ -37,7 +37,7 @@ function ProductList() {
     }
 
     // Get current products based on pagination
-    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfLastProduct = Math.min(currentPage * productsPerPage, productsArr.length);
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = productsArr.slice(indexOfFirstProduct, indexOfLastProduct);
     console.log(currentProducts);
@@ -119,7 +119,6 @@ function ProductList() {
                                             </div>
                                             :
                                             <>
-
                                                 <tbody>
 
                                                     {currentProducts.map((item, index) => {
@@ -169,10 +168,7 @@ function ProductList() {
                                     :
                                     <div className="datatable-bottom">
                                         <div className="datatable-info">
-                                            {`Showing ${(currentPage - 1) * productsPerPage + 1}
-                                             to ${currentPage * productsPerPage > productsArr.length ? productsArr.length :
-                                                    currentPage * productsPerPage} 
-                                                of ${productsArr.length} Products`}
+                                            {`Showing ${indexOfFirstProduct + 1} to ${indexOfLastProduct} of ${productsArr.length} Products`}
                                         </div>
                                         <div className="datatable-pagination">
                                             <ul className="datatable-pagination-list">

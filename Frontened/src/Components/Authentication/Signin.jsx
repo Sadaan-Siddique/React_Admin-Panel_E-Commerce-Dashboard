@@ -61,7 +61,11 @@ function Signin() {
 
         setLoading(false);
         console.log(err);
-        setAuthorizeStatus(err.response.data);
+        if (err.response) {
+          setAuthorizeStatus(err.response.data);
+        } else {
+          setAuthorizeStatus(err.message);
+        }
         bake_cookie('isLoggedIn', false);
         setTimeout(() => {
           setAuthorizeStatus('');
